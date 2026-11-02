@@ -1,1266 +1,304 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
-<meta name="description" content="ORVIX — Discover the world, connect beyond language.">
-<title>ORVIX — Made in Mian Abdullah Gulzar</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+<title>ORVIX | MADE IN MIAN ABDULLAH GULZAR</title>
 <style>
-:root {
-  --bg:#080808;
-  --panel:#121212;
-  --panel2:#1b1b1b;
-  --line:#292929;
-  --text:#ffffff;
-  --muted:#a4a4a4;
-  --red:#ff0033;
-  --red2:#ff3157;
-  --radius:18px;
-}
+:root{--bg:#080808;--panel:#131313;--panel2:#1c1c1c;--line:#303030;--text:#fff;--muted:#aaa;--purple:#a78bfa;--pink:#fb7185;--green:#34d399}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,Arial,sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible{
-  outline:2px solid var(--red);outline-offset:3px
-}
-a{color:inherit;text-decoration:none}
-img,video{max-width:100%}
-.hidden{display:none!important}
-.muted{color:var(--muted)}
-.small{font-size:12px}
-.red{color:var(--red)}
-.app{min-height:100vh}
-.topbar{
-  height:70px;position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:18px;padding:0 24px;background:#080808ed;
-  backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:26px;letter-spacing:-1.5px}
-.brand-mark{
-  width:39px;height:39px;border-radius:12px;
-  display:grid;place-items:center;color:white;
-  background:linear-gradient(140deg,#ff0033,#8c001c);
-  box-shadow:0 0 24px #ff003344;font-size:23px
-}
-.searchbar{
-  width:min(440px,40vw);display:flex;align-items:center;gap:10px;
-  padding:11px 16px;border:1px solid var(--line);border-radius:30px;
-  background:var(--panel);color:var(--muted)
-}
-.searchbar input{width:100%;color:white;background:none;border:0;outline:0}
-.top-actions{display:flex;align-items:center;gap:12px}
-.icon-btn{
-  width:42px;height:42px;display:grid;place-items:center;
-  border:1px solid var(--line);border-radius:50%;
-  background:var(--panel);color:white;font-size:16px
-}
-.icon-btn:hover,.nav-btn:hover{background:#252525}
-.avatar{
-  width:39px;height:39px;border-radius:50%;object-fit:cover;
-  background:#292929;border:1px solid #444
-}
-.layout{
-  display:grid;grid-template-columns:235px minmax(0,1fr) 285px;
-  gap:25px;max-width:1600px;margin:auto;padding:24px
-}
-.sidebar{position:sticky;top:94px;height:calc(100vh - 115px);overflow:auto}
-.nav-group{margin-bottom:25px}
-.nav-label{
-  padding:8px 13px;color:#777;font-size:11px;
-  font-weight:800;letter-spacing:1.7px;text-transform:uppercase
-}
-.nav-btn{
-  width:100%;display:flex;align-items:center;gap:14px;
-  padding:13px;border:0;border-radius:12px;
-  background:transparent;color:#c9c9c9;text-align:left;
-  font-weight:600;font-size:14px;margin:3px 0
-}
-.nav-btn i{width:22px;text-align:center;font-size:18px}
-.nav-btn.active{background:#ff003315;color:#fff}
-.nav-btn.active i{color:var(--red)}
-.nav-btn.create{background:var(--red);color:white}
-.nav-btn.create i{color:white}
-.main{min-width:0}
-.page{display:none;animation:appear .2s ease}
+.top{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#080808f5;z-index:10}
+.brand{font-weight:1000;font-size:27px;letter-spacing:2px}
+.brand span{color:var(--purple)}
+.subbrand{font-size:10px;color:#aaa;letter-spacing:1px;margin-top:3px}
+.layout{max-width:1450px;margin:auto;padding:20px;display:grid;grid-template-columns:225px minmax(0,720px) 270px;gap:20px}
+.sidebar,.rightbar{position:sticky;top:90px;align-self:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:16px;overflow:hidden}
+.navbtn{display:flex;align-items:center;gap:13px;width:100%;border:0;background:none;color:#ddd;text-align:left;padding:13px;border-radius:12px;margin:3px 0}
+.navbtn:hover,.navbtn.active{background:#252525;color:#fff}
+.navbtn span{font-size:21px;width:25px}
+h1,h2,h3,p{margin-top:0}
+h2{font-size:23px}
+h3{font-size:16px}
+.muted{color:var(--muted);font-size:13px;line-height:1.6}
+.btn{border:1px solid var(--line);background:#242424;color:white;padding:11px 15px;border-radius:12px}
+.btn.primary{background:white;color:#080808;font-weight:bold;border-color:white}
+.btn.purple{background:#8b5cf6;border-color:#8b5cf6}
+.btn.danger{background:#511e29}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.field{display:block;width:100%;background:#090909;color:#fff;border:1px solid #353535;padding:13px;border-radius:12px;margin:7px 0 13px}
+textarea.field{min-height:90px;resize:vertical}
+.page{display:none}
 .page.active{display:block}
-@keyframes appear{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
-.page-heading{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin:0 0 22px
-}
-.page-heading h1{font-size:27px;letter-spacing:-1px;margin:0}
-.page-heading p{color:var(--muted);font-size:13px;margin:7px 0 0}
-.pill{
-  border:1px solid var(--line);border-radius:30px;padding:8px 13px;
-  background:var(--panel);color:white;font-size:12px
-}
-.pill.selected{background:var(--red);border-color:var(--red)}
-.card{
-  background:var(--panel);border:1px solid var(--line);
-  border-radius:var(--radius);padding:18px;margin-bottom:16px
-}
-.stories{
-  display:flex;gap:16px;overflow-x:auto;padding:5px 2px 18px;
-  scrollbar-width:thin
-}
-.story{flex:0 0 70px;text-align:center;cursor:pointer}
-.story-ring{
-  width:62px;height:62px;margin:auto;border-radius:50%;padding:3px;
-  background:linear-gradient(135deg,#ff0033,#ff9b44,#b000ff)
-}
-.story-ring img{
-  width:100%;height:100%;object-fit:cover;border:3px solid var(--bg);
-  border-radius:50%;background:#222
-}
-.story span{display:block;font-size:11px;color:#ccc;margin-top:8px;overflow:hidden;text-overflow:ellipsis}
-.composer{display:flex;gap:12px;align-items:center}
-.composer-input{
-  flex:1;min-width:0;padding:14px 17px;border-radius:30px;
-  background:#202020;border:1px solid #303030;color:white
-}
-.primary{
-  border:0;border-radius:11px;padding:12px 17px;
-  background:var(--red);color:white;font-weight:800;
-  transition:transform .15s,background .15s
-}
-.primary:hover{background:#e0002b;transform:translateY(-1px)}
-.secondary{
-  border:1px solid var(--line);border-radius:11px;
-  padding:11px 15px;background:#1b1b1b;color:white
-}
-.feed-tabs{display:flex;gap:8px;margin:18px 0;overflow:auto}
-.post{overflow:hidden;padding:0}
-.post-header{display:flex;align-items:center;gap:11px;padding:17px}
-.post-user{flex:1;min-width:0}
-.post-user strong{font-size:13px}
-.post-user p{font-size:11px;color:var(--muted);margin:5px 0 0}
-.verified{color:#39a9ff;margin-left:4px}
-.post-caption{padding:0 17px 14px;font-size:13px;line-height:1.7;white-space:pre-wrap}
-.post-media{
-  width:100%;max-height:650px;object-fit:contain;
-  background:#050505;display:block
-}
-.post-actions{
-  display:flex;align-items:center;gap:18px;padding:14px 17px;
-  border-top:1px solid #222
-}
-.action-btn{border:0;background:none;color:#ddd;padding:4px;font-size:14px}
-.action-btn i{font-size:19px;margin-right:5px}
-.action-btn.liked{color:var(--red)}
-.post-count{font-size:11px;color:var(--muted);margin-left:auto}
-.rightbar{position:sticky;top:94px;height:calc(100vh - 115px);overflow:auto}
-.profile-mini{display:flex;align-items:center;gap:12px}
-.profile-mini .details{flex:1;min-width:0}
-.profile-mini strong{font-size:13px}
-.profile-mini p{font-size:11px;color:var(--muted);margin:5px 0}
-.section-title{font-size:14px;font-weight:800;margin:0 0 15px}
-.trend{padding:12px 0;border-bottom:1px solid #242424}
-.trend:last-child{border:0}
-.trend small{color:var(--muted)}
-.trend strong{display:block;font-size:13px;margin:6px 0}
-.suggest-row{display:flex;align-items:center;gap:10px;margin:14px 0}
-.suggest-row .details{flex:1;min-width:0}
-.suggest-row strong{font-size:12px}
-.suggest-row small{display:block;color:var(--muted);margin-top:4px}
-.follow-btn{border:0;background:none;color:#ff4b6c;font-size:12px;font-weight:800}
-footer{font-size:10px;color:#656565;line-height:2;padding:18px 4px}
-footer a:hover{color:white}
-
-/* Shorts */
-.shorts-shell{
-  height:min(790px,calc(100vh - 115px));min-height:420px;
-  overflow-y:auto;scroll-snap-type:y mandatory;
-  border-radius:20px;background:#000;scrollbar-width:thin
-}
-.short-card{
-  height:100%;min-height:420px;position:relative;overflow:hidden;
-  scroll-snap-align:start;background:#151515
-}
-.short-card video,.short-card img{
-  width:100%;height:100%;object-fit:cover;display:block
-}
-.short-placeholder{
-  width:100%;height:100%;display:grid;place-items:center;
-  background:radial-gradient(ellipse at 70% 20%,#6d001a,#1c0710 40%,#050505 80%)
-}
-.short-placeholder .big-play{font-size:70px;color:#ffffffaa}
-.short-overlay{
-  position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(transparent 40%,#000c 100%)
-}
-.short-info{
-  position:absolute;left:18px;right:76px;bottom:22px;z-index:2
-}
-.short-info strong{font-size:14px}
-.short-info p{font-size:13px;line-height:1.5}
-.short-side{
-  position:absolute;right:12px;bottom:26px;z-index:3;
-  display:flex;flex-direction:column;align-items:center;gap:19px
-}
-.short-side button{
-  border:0;background:#0005;color:white;font-size:22px;
-  display:flex;flex-direction:column;align-items:center;gap:5px
-}
-.short-side small{font-size:10px}
-
-/* News and sports */
-.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.news-card{
-  overflow:hidden;background:var(--panel);border:1px solid var(--line);
-  border-radius:15px
-}
-.news-card img{width:100%;height:145px;object-fit:cover;background:#222}
-.news-body{padding:13px}
-.news-body h3{font-size:14px;line-height:1.5;margin:7px 0}
-.news-body p{font-size:11px;color:var(--muted);line-height:1.6}
-.news-body a{color:#ff4b6c;font-size:12px}
-.score-row{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:10px;padding:15px 0;border-bottom:1px solid var(--line)
-}
-.score-row:last-child{border:0}
-.team{flex:1;font-size:13px;font-weight:700}
-.score{font-size:20px;font-weight:900}
-.live-dot{color:#ff334f;font-size:11px;font-weight:800}
-.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.tool-card{
-  min-height:135px;border:1px solid var(--line);border-radius:16px;
-  padding:17px;background:linear-gradient(145deg,#1c1c1c,#101010);
-  cursor:pointer
-}
-.tool-card i{font-size:24px;color:var(--red);margin-bottom:15px}
-.tool-card strong{display:block;font-size:13px}
-.tool-card p{font-size:11px;color:var(--muted);line-height:1.5}
-
-/* Forms, profile, login */
-.field{width:100%;padding:13px 14px;border-radius:10px;background:#171717;color:white;border:1px solid #333;margin:6px 0 13px}
-textarea.field{resize:vertical;min-height:110px}
-label{font-size:12px;color:#ccc}
-.form-message{font-size:12px;color:#ff758c;line-height:1.6}
-.profile-cover{
-  height:155px;border-radius:18px;
-  background:linear-gradient(115deg,#29000b,#ff0033,#170008);
-  position:relative;margin-bottom:57px
-}
-.profile-cover .avatar{
-  position:absolute;left:22px;bottom:-42px;width:88px;height:88px;
-  border:5px solid var(--bg)
-}
-.profile-stats{display:flex;gap:25px;flex-wrap:wrap;margin:20px 0}
-.profile-stats strong{font-size:19px;display:block}
-.profile-stats span{font-size:11px;color:var(--muted)}
-.bottom-nav{display:none}
-.toast{
-  position:fixed;bottom:25px;left:50%;transform:translateX(-50%);
-  background:#242424;border:1px solid #444;padding:12px 18px;
-  border-radius:30px;z-index:1000;font-size:13px;box-shadow:0 8px 35px #0009
-}
-.loading{padding:30px;text-align:center;color:var(--muted);font-size:13px}
-.divider{border:0;border-top:1px solid var(--line);margin:20px 0}
-
-@media(max-width:1150px){
- .layout{grid-template-columns:205px minmax(0,1fr);gap:20px;padding:18px}
- .rightbar{display:none}
-}
-@media(max-width:700px){
- .topbar{height:60px;padding:0 12px;gap:10px}
- .brand{font-size:22px;gap:7px}
- .brand-mark{width:34px;height:34px}
- .searchbar{width:auto;flex:1;padding:10px 12px}
- .searchbar input{min-width:0}
- .top-actions .desktop-only{display:none}
- .layout{display:block;padding:14px 12px 85px}
- .sidebar{display:none}
- .page-heading h1{font-size:23px}
- .bottom-nav{
-   display:flex;position:fixed;bottom:0;left:0;right:0;z-index:100;
-   background:#090909f5;backdrop-filter:blur(15px);
-   border-top:1px solid var(--line);justify-content:space-around;
-   padding:9px 3px calc(9px + env(safe-area-inset-bottom))
- }
- .bottom-nav button{
-   flex:1;border:0;background:none;color:#aaa;font-size:10px;
-   display:flex;flex-direction:column;align-items:center;gap:5px
- }
- .bottom-nav button i{font-size:20px}
- .bottom-nav button.active{color:var(--red)}
- .news-grid{grid-template-columns:1fr}
- .shorts-shell{height:calc(100dvh - 145px);min-height:400px}
- .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .card{padding:14px}
-}
+.hidden{display:none!important}
+.badge{background:#292929;color:#ddd;border-radius:30px;padding:6px 10px;font-size:11px}
+.avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#333}
+.userline{display:flex;align-items:center;gap:11px}
+.post-image,.post-video{width:100%;max-height:580px;object-fit:contain;background:#050505;border-radius:14px;margin-top:12px}
+.post-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.post-actions button{border:0;background:#252525;color:white;padding:9px 12px;border-radius:10px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{background:#171717;border:1px solid var(--line);border-radius:15px;padding:15px}
+.bigico{font-size:28px;margin-bottom:10px}
+.stat{font-size:25px;font-weight:900}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.chatbox{height:300px;overflow:auto;padding:12px;background:#090909;border:1px solid var(--line);border-radius:14px;margin:12px 0}
+.bubble{background:#262626;border-radius:13px;padding:10px;margin:8px 0;max-width:85%;overflow-wrap:anywhere}
+.bubble.mine{background:#50397f;margin-left:auto}
+.newsitem{padding:12px 0;border-bottom:1px solid var(--line)}
+.newsitem a{color:#ddd;text-decoration:none}
+#toast{display:none;position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:12px 18px;border-radius:12px;z-index:100;max-width:90%}
+.mobilebar{display:none}
+footer{text-align:center;color:#777;padding:25px;font-size:12px}
+@media(max-width:1080px){.layout{grid-template-columns:180px minmax(0,1fr)}.rightbar{display:none}}
+@media(max-width:700px){.layout{display:block;padding:12px;padding-bottom:80px}.sidebar,.rightbar{display:none}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid var(--line);z-index:20;justify-content:space-around;padding:9px 2px}.mobilebar button{background:none;border:0;color:#eee;font-size:20px}.mobilebar small{display:block;font-size:9px}.top{padding:0 12px}.card{padding:14px}}
 </style>
 </head>
-
 <body>
-<div class="app">
-<header class="topbar">
-  <a href="#" class="brand" onclick="navigate('home');return false">
-    <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
-    ORVIX
-  </a>
-
-  <div class="searchbar">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input id="globalSearch" placeholder="Search creators, videos, topics..." aria-label="Search ORVIX">
-  </div>
-
-  <div class="top-actions">
-    <button class="icon-btn desktop-only" title="Create post" onclick="navigate('create')">
-      <i class="fa-solid fa-plus"></i>
-    </button>
-    <button class="icon-btn" title="Notifications" onclick="toast('Notifications will appear here when connected.')">
-      <i class="fa-regular fa-bell"></i>
-    </button>
-    <img id="topAvatar" class="avatar" alt="Your profile" src="https://placehold.co/100x100/222/fff?text=O" onclick="navigate('profile')" style="cursor:pointer">
-  </div>
+<header class="top">
+ <div>
+  <div class="brand">OR<span>VIX</span></div>
+  <div class="subbrand">MADE IN MIAN ABDULLAH GULZAR</div>
+ </div>
+ <div class="btnrow">
+  <span id="authStatus" class="badge">Guest</span>
+  <button class="btn" onclick="showPage('account')">👤 Account</button>
+ </div>
 </header>
 
 <div class="layout">
 <aside class="sidebar">
-  <div class="nav-group">
-    <div class="nav-label">Discover</div>
-    <button class="nav-btn active" data-page="home" onclick="navigate('home')"><i class="fa-solid fa-house"></i> Home Feed</button>
-    <button class="nav-btn" data-page="shorts" onclick="navigate('shorts')"><i class="fa-brands fa-youtube"></i> ORVIX Shorts</button>
-    <button class="nav-btn" data-page="explore" onclick="navigate('explore')"><i class="fa-solid fa-compass"></i> Explore</button>
-    <button class="nav-btn" data-page="news" onclick="navigate('news')"><i class="fa-regular fa-newspaper"></i> World News</button>
-    <button class="nav-btn" data-page="sports" onclick="navigate('sports')"><i class="fa-solid fa-trophy"></i> Sports Live</button>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">Create</div>
-    <button class="nav-btn create" data-page="create" onclick="navigate('create')"><i class="fa-solid fa-circle-plus"></i> Create Post</button>
-    <button class="nav-btn" data-page="translate" onclick="navigate('translate')"><i class="fa-solid fa-language"></i> AI Translator</button>
-    <button class="nav-btn" data-page="tools" onclick="navigate('tools')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tools</button>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">You</div>
-    <button class="nav-btn" data-page="profile" onclick="navigate('profile')"><i class="fa-regular fa-user"></i> My Profile</button>
-    <button class="nav-btn" data-page="settings" onclick="navigate('settings')"><i class="fa-solid fa-gear"></i> Settings</button>
-  </div>
-
-  <footer>
-    ORVIX © 2026<br>
-    MADE IN MIAN ABDULLAH GULZAR<br>
-    Discover. Create. Connect.<br>
-    <a href="#" onclick="toast('Community guidelines coming soon');return false">Guidelines</a> ·
-    <a href="#" onclick="toast('Privacy policy must be configured before launch');return false">Privacy</a>
-  </footer>
+ <div class="card" style="text-align:center">
+  <div style="font-size:35px;font-weight:1000">O<span style="color:#a78bfa">.</span></div>
+  <b>ORVIX SOCIAL</b>
+  <p class="muted">Connect beyond borders.</p>
+ </div>
+ <button class="navbtn active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+ <button class="navbtn" data-page="shorts" onclick="showPage('shorts')"><span>▶</span>Shorts</button>
+ <button class="navbtn" data-page="explore" onclick="showPage('explore')"><span>⌕</span>Explore</button>
+ <button class="navbtn" data-page="messages" onclick="showPage('messages')"><span>✉</span>Messages</button>
+ <button class="navbtn" data-page="calls" onclick="showPage('calls')"><span>▣</span>Calls</button>
+ <button class="navbtn" data-page="market" onclick="showPage('market')"><span>◇</span>Marketplace</button>
+ <button class="navbtn" data-page="news" onclick="showPage('news')"><span>◎</span>World News</button>
+ <button class="navbtn" data-page="sports" onclick="showPage('sports')"><span>⚽</span>Sports</button>
+ <button class="navbtn" data-page="translate" onclick="showPage('translate')"><span>文</span>Translator</button>
+ <button class="navbtn" data-page="ai" onclick="showPage('ai')"><span>✧</span>AI Studio</button>
+ <button class="navbtn" data-page="profile" onclick="showPage('profile')"><span>◉</span>Profile</button>
+ <button class="navbtn" data-page="account" onclick="showPage('account')"><span>⚙</span>Setup</button>
 </aside>
 
-<main class="main">
-
-<!-- HOME -->
-<section id="page-home" class="page active">
-  <div class="page-heading">
-    <div><h1>Your World. <span class="red">Your ORVIX.</span></h1>
-    <p>Discover ideas, people and moments around the world.</p></div>
-    <button class="pill" onclick="navigate('explore')"><i class="fa-solid fa-globe"></i> Global</button>
+<main>
+<section class="page active" id="page-home">
+ <div class="card" style="background:linear-gradient(130deg,#21152c,#101010)">
+  <span class="badge">WELCOME TO ORVIX</span>
+  <h1 style="font-size:36px;margin:17px 0 8px">One world.<br>Many languages.</h1>
+  <p class="muted">Create. Connect. Discover.</p>
+  <button class="btn primary" onclick="showPage('explore')">Explore ORVIX →</button>
+ </div>
+ <div class="card">
+  <h3>✍️ Create a post</h3>
+  <textarea id="postText" class="field" placeholder="What's happening in your world?"></textarea>
+  <label>Photo or video — maximum 500 MB</label>
+  <input id="postFile" class="field" type="file" accept="image/*,video/*">
+  <div class="btnrow">
+   <button class="btn primary" onclick="publishPost()">＋ Publish post</button>
+   <button class="btn" onclick="showPage('profile')">My profile</button>
   </div>
-
-  <div class="stories" id="stories">
-    <div class="story" onclick="navigate('create')">
-      <div class="story-ring"><img src="https://placehold.co/100x100/ff0033/ffffff?text=+" alt="Add story"></div>
-      <span>Your story</span>
-    </div>
-    <div class="story"><div class="story-ring"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" alt="Creator"></div><span>Amelia</span></div>
-    <div class="story"><div class="story-ring"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120" alt="Creator"></div><span>Alex</span></div>
-    <div class="story"><div class="story-ring"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=120" alt="Creator"></div><span>Sofia</span></div>
-    <div class="story"><div class="story-ring"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120" alt="Creator"></div><span>Daniel</span></div>
-    <div class="story"><div class="story-ring"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=120" alt="Creator"></div><span>Maya</span></div>
-  </div>
-
-  <div class="card">
-    <div class="composer">
-      <img id="composerAvatar" class="avatar" src="https://placehold.co/100x100/222/fff?text=O" alt="Your avatar">
-      <input class="composer-input" id="quickPost" placeholder="Share something with the world...">
-      <button class="primary" onclick="quickCreate()">Post</button>
-    </div>
-  </div>
-
-  <div class="feed-tabs">
-    <button class="pill selected" onclick="setFeed('forYou',this)">For You</button>
-    <button class="pill" onclick="setFeed('latest',this)">Latest</button>
-    <button class="pill" onclick="setFeed('following',this)">Following</button>
-  </div>
-
-  <div id="feed">
-    <article class="card post">
-      <div class="post-header">
-        <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Creator">
-        <div class="post-user"><strong>Amelia Rose <i class="fa-solid fa-circle-check verified"></i></strong><p>@ameliarose · Sample post</p></div>
-        <button class="icon-btn" onclick="toast('Post menu')"><i class="fa-solid fa-ellipsis"></i></button>
-      </div>
-      <div class="post-caption">The world is full of beautiful places. Where should I travel next? 🌍✨</div>
-      <img class="post-media" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=85" alt="Beautiful lake and mountains" loading="lazy">
-      <div class="post-actions">
-        <button class="action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span>1.2k</span></button>
-        <button class="action-btn" onclick="toast('Comments feature can be connected to Firebase')"><i class="fa-regular fa-comment"></i> 86</button>
-        <button class="action-btn" onclick="sharePage()"><i class="fa-solid fa-share"></i></button>
-        <span class="post-count">🌍 Global</span>
-      </div>
-    </article>
-
-    <article class="card post">
-      <div class="post-header">
-        <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Creator">
-        <div class="post-user"><strong>Alex Morgan</strong><p>@alexcreates · Sample post</p></div>
-        <button class="icon-btn" onclick="toast('Post menu')"><i class="fa-solid fa-ellipsis"></i></button>
-      </div>
-      <div class="post-caption">Create something today that your future self will thank you for. 🚀</div>
-      <img class="post-media" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=85" alt="People working together" loading="lazy">
-      <div class="post-actions">
-        <button class="action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span>843</span></button>
-        <button class="action-btn" onclick="toast('Comments feature can be connected to Firebase')"><i class="fa-regular fa-comment"></i> 41</button>
-        <button class="action-btn" onclick="sharePage()"><i class="fa-solid fa-share"></i></button>
-        <span class="post-count">🌐 Worldwide</span>
-      </div>
-    </article>
-  </div>
+  <p class="muted">Sign in before publishing. Actual upload limits depend on your Firebase project.</p>
+ </div>
+ <div class="card">
+  <h2>🌍 Community Feed</h2>
+  <div id="feedStatus" class="muted">Loading posts…</div>
+  <div id="feed"></div>
+ </div>
 </section>
 
-<!-- SHORTS -->
-<section id="page-shorts" class="page">
-  <div class="page-heading">
-    <div><h1>ORVIX <span class="red">Shorts</span></h1><p>Short videos. Infinite possibilities.</p></div>
-    <button class="primary" onclick="navigate('create')"><i class="fa-solid fa-plus"></i> Upload</button>
-  </div>
-  <div class="shorts-shell" id="shortsFeed">
-    <div class="short-card">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1000&q=85" alt="Mountain landscape">
-      <div class="short-overlay"></div>
-      <div class="short-info"><strong>@worldexplorer <span class="red">✓</span></strong><p>Take a moment. Breathe. The world is beautiful. 🌎 #travel #nature</p><button class="secondary" onclick="toast('Follow feature requires an account')">+ Follow</button></div>
-      <div class="short-side">
-        <button onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i><small>Like</small></button>
-        <button onclick="toast('Sign in to comment on Shorts')"><i class="fa-regular fa-comment"></i><small>Comment</small></button>
-        <button onclick="sharePage()"><i class="fa-solid fa-share"></i><small>Share</small></button>
-        <button onclick="toast('Sound details')"><i class="fa-solid fa-music"></i><small>Sound</small></button>
-      </div>
-    </div>
-    <div class="short-card">
-      <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1000&q=85" alt="Ocean waves">
-      <div class="short-overlay"></div>
-      <div class="short-info"><strong>@oceanlife</strong><p>Ocean vibes 🌊 Take care of our planet. #ocean #earth</p></div>
-      <div class="short-side">
-        <button onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i><small>Like</small></button>
-        <button onclick="toast('Sign in to comment on Shorts')"><i class="fa-regular fa-comment"></i><small>Comment</small></button>
-        <button onclick="sharePage()"><i class="fa-solid fa-share"></i><small>Share</small></button>
-      </div>
-    </div>
-    <div class="short-card">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&q=85" alt="Stars over mountains">
-      <div class="short-overlay"></div>
-      <div class="short-info"><strong>@stargazer</strong><p>Somewhere under the same stars ✨ #space #night</p></div>
-      <div class="short-side">
-        <button onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i><small>Like</small></button>
-        <button onclick="sharePage()"><i class="fa-solid fa-share"></i><small>Share</small></button>
-      </div>
-    </div>
-  </div>
+<section class="page" id="page-shorts">
+ <div class="card"><h2>▶ ORVIX Shorts</h2><p class="muted">Short videos from the community.</p><div id="shortsFeed">Loading videos…</div></div>
 </section>
 
-<!-- EXPLORE -->
-<section id="page-explore" class="page">
-  <div class="page-heading"><div><h1>Explore <span class="red">Everything</span></h1><p>Discover topics, creators and ideas.</p></div></div>
-  <div class="tools-grid">
-    <div class="tool-card" onclick="navigate('shorts')"><i class="fa-brands fa-youtube"></i><strong>Trending Shorts</strong><p>Discover vertical videos.</p></div>
-    <div class="tool-card" onclick="navigate('news')"><i class="fa-solid fa-earth-americas"></i><strong>World News</strong><p>Explore stories across countries.</p></div>
-    <div class="tool-card" onclick="navigate('sports')"><i class="fa-solid fa-trophy"></i><strong>Sports Center</strong><p>Scores and sports resources.</p></div>
-    <div class="tool-card" onclick="navigate('translate')"><i class="fa-solid fa-language"></i><strong>Language Bridge</strong><p>Translate text across languages.</p></div>
-    <div class="tool-card" onclick="navigate('tools')"><i class="fa-solid fa-wand-magic-sparkles"></i><strong>AI Creator Tools</strong><p>Write captions and ideas.</p></div>
-    <div class="tool-card" onclick="navigate('create')"><i class="fa-solid fa-camera"></i><strong>Create Something</strong><p>Share your moment.</p></div>
-  </div>
-  <div class="card" style="margin-top:18px">
-    <h3 class="section-title">Discover a new world</h3>
-    <p class="muted" style="font-size:13px;line-height:1.8">ORVIX brings videos, conversations, culture and useful tools together. Choose a section above to get started.</p>
-  </div>
+<section class="page" id="page-explore">
+ <div class="card">
+  <h2>⌕ Explore</h2>
+  <input id="searchInput" class="field" placeholder="Search posts or creators">
+  <button class="btn primary" onclick="searchPosts()">Search</button>
+  <div id="searchResults" style="margin-top:14px"></div>
+ </div>
+ <div class="grid2">
+  <div class="tile"><div class="bigico">🎬</div><h3>Creators</h3><p class="muted">Discover people and videos.</p></div>
+  <div class="tile"><div class="bigico">🌐</div><h3>Global</h3><p class="muted">Connect across languages.</p></div>
+  <div class="tile"><div class="bigico">🎨</div><h3>Creative</h3><p class="muted">Share your ideas.</p></div>
+  <div class="tile"><div class="bigico">🛍️</div><h3>Shopping</h3><button class="btn" onclick="showPage('market')">Marketplace</button></div>
+ </div>
 </section>
 
-<!-- NEWS -->
-<section id="page-news" class="page">
-  <div class="page-heading"><div><h1>World <span class="red">News</span></h1><p>Explore news from around the globe.</p></div></div>
-  <div class="card">
-    <label for="newsCountry">Choose a country</label>
-    <select class="field" id="newsCountry">
-      <option value="Pakistan">Pakistan</option><option value="United States">United States</option>
-      <option value="United Kingdom">United Kingdom</option><option value="India">India</option>
-      <option value="Saudi Arabia">Saudi Arabia</option><option value="United Arab Emirates">United Arab Emirates</option>
-      <option value="Canada">Canada</option><option value="Australia">Australia</option>
-      <option value="Turkey">Turkey</option><option value="Germany">Germany</option>
-      <option value="France">France</option><option value="Japan">Japan</option>
-      <option value="Brazil">Brazil</option><option value="South Africa">South Africa</option>
-    </select>
-    <button class="primary" onclick="loadNews()">Load News <i class="fa-solid fa-arrow-right"></i></button>
-    <p class="muted small">News results depend on the available public news feed and its country coverage.</p>
-  </div>
-  <div id="newsResults" class="news-grid">
-    <div class="card"><strong>Explore current headlines</strong><p class="muted small">Select a country and load available headlines.</p></div>
-  </div>
-  <div class="card" style="margin-top:15px">
-    <strong>More news sources</strong>
-    <p class="muted small">Open Google News to browse additional reports and publishers.</p>
-    <a id="googleNewsLink" href="https://news.google.com/" target="_blank" rel="noopener noreferrer" class="primary" style="display:inline-block;margin-top:8px">Open Google News</a>
-  </div>
+<section class="page" id="page-messages">
+ <div class="card">
+  <h2>✉ Direct Messages</h2>
+  <p class="muted">Enter the recipient's Firebase UID.</p>
+  <input id="recipientUid" class="field" placeholder="Recipient UID">
+  <button class="btn primary" onclick="openChat()">Open conversation</button>
+  <div id="chatTitle" class="muted" style="margin-top:12px">No conversation selected.</div>
+  <div id="chatMessages" class="chatbox"></div>
+  <textarea id="messageText" class="field" placeholder="Write a message…"></textarea>
+  <button class="btn primary" onclick="sendMessage()">Send ➤</button>
+ </div>
 </section>
 
-<!-- SPORTS -->
-<section id="page-sports" class="page">
-  <div class="page-heading"><div><h1>Sports <span class="red">Center</span></h1><p>Find scores, fixtures and official coverage.</p></div></div>
-  <div class="chip-row">
-    <button class="pill selected" onclick="loadSports('soccer',this)">Football</button>
-    <button class="pill" onclick="loadSports('cricket',this)">Cricket</button>
-    <button class="pill" onclick="loadSports('basketball',this)">Basketball</button>
-    <button class="pill" onclick="loadSports('baseball',this)">Baseball</button>
-    <button class="pill" onclick="loadSports('hockey',this)">Hockey</button>
+<section class="page" id="page-calls">
+ <div class="card">
+  <h2>▣ Voice & Video Calls</h2>
+  <p class="muted">The interface below can access your camera/microphone. Full remote calling requires call signaling and a TURN server.</p>
+  <input id="callRecipient" class="field" placeholder="Other user's UID">
+  <div class="btnrow">
+   <button class="btn primary" onclick="startCall('audio')">📞 Voice</button>
+   <button class="btn purple" onclick="startCall('video')">🎥 Video</button>
+   <button class="btn danger" onclick="endCall()">End call</button>
   </div>
-  <div class="card">
-    <div class="page-heading"><h3 class="section-title">Scoreboard</h3><button class="secondary" onclick="loadSports(currentSport)">Refresh</button></div>
-    <div id="sportsResults"><div class="loading">Choose a sport to load available scores.</div></div>
-    <p class="muted small">Score data depends on third-party feeds and may be unavailable for some leagues.</p>
-  </div>
-  <div class="card">
-    <h3 class="section-title">Official sports coverage</h3>
-    <p class="muted small">Watch only through official broadcasters or licensed streaming services available in your region.</p>
-    <div class="chip-row">
-      <a class="pill" href="https://www.espn.com/" target="_blank" rel="noopener noreferrer">ESPN</a>
-      <a class="pill" href="https://www.icc-cricket.com/" target="_blank" rel="noopener noreferrer">ICC Cricket</a>
-      <a class="pill" href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer">FIFA</a>
-      <a class="pill" href="https://olympics.com/" target="_blank" rel="noopener noreferrer">Olympics</a>
-    </div>
-  </div>
+  <video id="remoteVideo" autoplay playsinline style="width:100%;background:#000;border-radius:12px;margin-top:14px"></video>
+  <video id="localVideo" autoplay muted playsinline style="width:130px;background:#222;border-radius:12px"></video>
+  <p id="callStatus" class="muted">No active call.</p>
+ </div>
 </section>
 
-<!-- TRANSLATOR -->
-<section id="page-translate" class="page">
-  <div class="page-heading"><div><h1>Universal <span class="red">Translator</span></h1><p>Connect across languages.</p></div><i class="fa-solid fa-language red" style="font-size:30px"></i></div>
-  <div class="card">
-    <label for="sourceLang">Translate from</label>
-    <select class="field" id="sourceLang">
-      <option value="auto">Auto-detect</option><option value="en">English</option>
-      <option value="ur">Urdu</option><option value="ar">Arabic</option>
-      <option value="hi">Hindi</option><option value="es">Spanish</option>
-      <option value="fr">French</option><option value="de">German</option>
-      <option value="zh">Chinese</option><option value="ja">Japanese</option>
-      <option value="tr">Turkish</option><option value="pt">Portuguese</option>
-      <option value="ru">Russian</option><option value="it">Italian</option>
-    </select>
-    <label for="targetLang">Translate to</label>
-    <select class="field" id="targetLang">
-      <option value="ur">Urdu</option><option value="en">English</option>
-      <option value="ar">Arabic</option><option value="hi">Hindi</option>
-      <option value="es">Spanish</option><option value="fr">French</option>
-      <option value="de">German</option><option value="zh">Chinese</option>
-      <option value="ja">Japanese</option><option value="tr">Turkish</option>
-      <option value="pt">Portuguese</option><option value="ru">Russian</option>
-      <option value="it">Italian</option>
-    </select>
-    <label for="translateInput">Your message</label>
-    <textarea id="translateInput" class="field" placeholder="Type or paste text to translate..."></textarea>
-    <button class="primary" onclick="translateText()"><i class="fa-solid fa-wand-magic-sparkles"></i> Translate</button>
-    <div class="divider"></div>
-    <label for="translateOutput">Translation</label>
-    <textarea id="translateOutput" class="field" readonly placeholder="Your translation will appear here..."></textarea>
-    <button class="secondary" onclick="copyTranslation()"><i class="fa-regular fa-copy"></i> Copy translation</button>
-    <p class="muted small">This demo uses a public translation endpoint. For a production app, use a supported translation API with appropriate limits and privacy controls.</p>
-  </div>
+<section class="page" id="page-market">
+ <div class="card">
+  <h2>◇ ORVIX Marketplace</h2>
+  <p class="muted">Separate page for product listings. Payments and delivery integration are not enabled yet.</p>
+  <input id="productName" class="field" placeholder="Product name">
+  <input id="productPrice" class="field" type="number" min="0" placeholder="Price">
+  <textarea id="productDescription" class="field" placeholder="Product description"></textarea>
+  <button class="btn primary" onclick="publishProduct()">＋ List product</button>
+ </div>
+ <div id="marketFeed"></div>
 </section>
 
-<!-- AI TOOLS -->
-<section id="page-tools" class="page">
-  <div class="page-heading"><div><h1>ORVIX <span class="red">AI Studio</span></h1><p>Tools for ideas, creators and communication.</p></div></div>
-  <div class="tools-grid">
-    <div class="tool-card" onclick="chooseTool('caption')"><i class="fa-solid fa-pen-nib"></i><strong>Caption Ideas</strong><p>Generate a caption from your topic.</p></div>
-    <div class="tool-card" onclick="chooseTool('bio')"><i class="fa-solid fa-id-card"></i><strong>Profile Bio</strong><p>Build a concise creator bio.</p></div>
-    <div class="tool-card" onclick="chooseTool('hashtags')"><i class="fa-solid fa-hashtag"></i><strong>Hashtag Helper</strong><p>Find relevant topic tags.</p></div>
-    <div class="tool-card" onclick="chooseTool('idea')"><i class="fa-solid fa-lightbulb"></i><strong>Video Ideas</strong><p>Plan your next short video.</p></div>
-  </div>
-  <div class="card" style="margin-top:16px">
-    <label for="aiType">Choose a tool</label>
-    <select class="field" id="aiType">
-      <option value="caption">Caption Ideas</option><option value="bio">Profile Bio</option>
-      <option value="hashtags">Hashtag Helper</option><option value="idea">Video Ideas</option>
-    </select>
-    <label for="aiTopic">Topic or description</label>
-    <textarea class="field" id="aiTopic" placeholder="Example: travel in Pakistan, fashion, technology..."></textarea>
-    <button class="primary" onclick="runCreatorTool()">Generate ideas</button>
-    <div class="divider"></div>
-    <label for="aiOutput">Your results</label>
-    <textarea class="field" id="aiOutput" readonly placeholder="Generated ideas will appear here..."></textarea>
-    <p class="muted small">These starter tools use local templates. A real generative AI model requires a secure server-side API integration.</p>
-  </div>
+<section class="page" id="page-news">
+ <div class="card">
+  <h2>◎ World News</h2>
+  <p class="muted">Headlines from an external news service.</p>
+  <button class="btn primary" onclick="loadNews()">Refresh news</button>
+  <div id="newsResults" style="margin-top:14px">Press refresh to load headlines.</div>
+ </div>
 </section>
 
-<!-- CREATE -->
-<section id="page-create" class="page">
-  <div class="page-heading"><div><h1>Create <span class="red">Something</span></h1><p>Your voice belongs in the world.</p></div></div>
-  <div class="card">
-    <label for="postCaption">What would you like to share?</label>
-    <textarea id="postCaption" class="field" placeholder="Write your caption, story or update..."></textarea>
-    <label for="postMedia">Add an image or video (optional)</label>
-    <input id="postMedia" class="field" type="file" accept="image/*,video/*">
-    <div id="mediaPreview" class="hidden"></div>
-    <label for="postVisibility">Who can see this post?</label>
-    <select id="postVisibility" class="field"><option value="public">Public</option><option value="private">Only me (demo)</option></select>
-    <button class="primary" onclick="createPost()"><i class="fa-solid fa-paper-plane"></i> Publish Post</button>
-    <p id="createMessage" class="form-message"></p>
-    <p class="muted small">Without Firebase setup, posts remain in this browser session and are not published to the world.</p>
+<section class="page" id="page-sports">
+ <div class="card">
+  <h2>⚽ Sports Hub</h2>
+  <div class="grid2">
+   <div class="tile"><div class="bigico">⚽</div><h3>Football</h3><a href="https://www.espn.com/soccer/" target="_blank" rel="noopener">Latest football</a></div>
+   <div class="tile"><div class="bigico">🏏</div><h3>Cricket</h3><a href="https://www.espncricinfo.com/" target="_blank" rel="noopener">Cricket news</a></div>
+   <div class="tile"><div class="bigico">🏀</div><h3>Basketball</h3><a href="https://www.nba.com/" target="_blank" rel="noopener">NBA</a></div>
+   <div class="tile"><div class="bigico">🎾</div><h3>Tennis</h3><a href="https://www.atptour.com/" target="_blank" rel="noopener">Tennis news</a></div>
   </div>
+ </div>
 </section>
 
-<!-- PROFILE -->
-<section id="page-profile" class="page">
-  <div class="page-heading"><div><h1>Your <span class="red">Profile</span></h1><p>Your identity on ORVIX.</p></div><button class="secondary" onclick="navigate('settings')">Edit profile</button></div>
-  <div class="card">
-    <div class="profile-cover"><img id="profileAvatar" class="avatar" src="https://placehold.co/100x100/222/fff?text=O" alt="Profile photo"></div>
-    <h2 id="profileName" style="margin:0 0 6px">ORVIX Creator</h2>
-    <p id="profileHandle" class="muted small">@creator</p>
-    <p id="profileBio" style="font-size:13px;line-height:1.7">Discover. Create. Connect. 🌍</p>
-    <div class="profile-stats">
-      <div><strong id="postStat">0</strong><span>Posts</span></div>
-      <div><strong>0</strong><span>Followers</span></div>
-      <div><strong>0</strong><span>Following</span></div>
-    </div>
-    <div class="divider"></div>
-    <h3 class="section-title">Your posts</h3>
-    <div id="profilePosts" class="muted small">Your created posts will appear here.</div>
-  </div>
+<section class="page" id="page-translate">
+ <div class="card">
+  <h2>文 Global Translator</h2>
+  <label>Source language</label>
+  <select id="sourceLang" class="field">
+   <option value="auto">Auto detect (uses English source)</option>
+   <option value="en">English</option><option value="ur">Urdu</option><option value="ar">Arabic</option>
+   <option value="hi">Hindi</option><option value="es">Spanish</option><option value="fr">French</option>
+   <option value="de">German</option><option value="zh">Chinese</option><option value="tr">Turkish</option>
+   <option value="ru">Russian</option><option value="pt">Portuguese</option><option value="it">Italian</option>
+   <option value="ja">Japanese</option><option value="ko">Korean</option>
+  </select>
+  <label>Target language</label>
+  <select id="targetLang" class="field">
+   <option value="ur">Urdu</option><option value="en">English</option><option value="ar">Arabic</option>
+   <option value="hi">Hindi</option><option value="es">Spanish</option><option value="fr">French</option>
+   <option value="de">German</option><option value="zh">Chinese</option><option value="tr">Turkish</option>
+   <option value="ru">Russian</option><option value="pt">Portuguese</option><option value="it">Italian</option>
+   <option value="ja">Japanese</option><option value="ko">Korean</option>
+  </select>
+  <textarea id="translateInput" class="field" placeholder="Enter text to translate"></textarea>
+  <button class="btn primary" onclick="translateText()">Translate →</button>
+  <div id="translationOutput" class="tile" style="margin-top:14px;white-space:pre-wrap">Translation appears here.</div>
+ </div>
 </section>
 
-<!-- SETTINGS -->
-<section id="page-settings" class="page">
-  <div class="page-heading"><div><h1>Settings & <span class="red">Account</span></h1><p>Personalize your ORVIX experience.</p></div></div>
-  <div class="card">
-    <h3 class="section-title">Profile information</h3>
-    <label for="displayName">Display name</label>
-    <input id="displayName" class="field" maxlength="50" placeholder="Your name">
-    <label for="displayBio">Profile bio</label>
-    <textarea id="displayBio" class="field" maxlength="240" placeholder="Tell the world about yourself"></textarea>
-    <label for="displayCountry">Country</label>
-    <select id="displayCountry" class="field">
-      <option>Pakistan</option><option>United States</option><option>United Kingdom</option>
-      <option>India</option><option>Saudi Arabia</option><option>United Arab Emirates</option>
-      <option>Canada</option><option>Australia</option><option>Turkey</option><option>Other</option>
-    </select>
-    <label for="displayAvatar">Profile picture</label>
-    <input id="displayAvatar" class="field" type="file" accept="image/*">
-    <button class="primary" onclick="saveProfile()">Save profile</button>
-    <p id="profileMessage" class="form-message"></p>
-  </div>
-  <div class="card">
-    <h3 class="section-title">Account</h3>
-    <p id="accountStatus" class="muted small">Demo mode — not signed in.</p>
-    <label for="authEmail">Email</label>
-    <input id="authEmail" class="field" type="email" autocomplete="email" placeholder="you@example.com">
-    <label for="authPassword">Password</label>
-    <input id="authPassword" class="field" type="password" autocomplete="current-password" placeholder="At least 6 characters">
-    <div class="chip-row">
-      <button class="primary" onclick="signIn()">Sign in</button>
-      <button class="secondary" onclick="signUp()">Create account</button>
-      <button class="secondary" onclick="signOutUser()">Sign out</button>
-    </div>
-    <p id="authMessage" class="form-message"></p>
-  </div>
-  <div class="card">
-    <h3 class="section-title">About ORVIX</h3>
-    <p class="muted small" style="line-height:1.9">ORVIX · MADE IN MIAN ABDULLAH GULZAR<br>Designed for a connected world.</p>
-  </div>
+<section class="page" id="page-ai">
+ <div class="card">
+  <h2>✧ ORVIX AI Studio</h2>
+  <p class="muted">A secure backend is required for real AI answers. Never put private AI keys in browser code.</p>
+  <select id="aiMode" class="field">
+   <option value="writing">Writing assistant</option><option value="ideas">Creative ideas</option>
+   <option value="caption">Social media caption</option><option value="translate">Translation</option>
+   <option value="summary">Summarization</option><option value="coding">Coding assistant</option>
+  </select>
+  <textarea id="aiPrompt" class="field" placeholder="What should AI help with?"></textarea>
+  <button class="btn primary" onclick="prepareAI()">Prepare request</button>
+  <div id="aiOutput" class="tile" style="margin-top:14px;white-space:pre-wrap">Your request appears here.</div>
+ </div>
 </section>
 
+<section class="page" id="page-profile">
+ <div class="card">
+  <h2>◉ My Profile</h2>
+  <div class="userline">
+   <img id="profileAvatar" class="avatar" src="https://placehold.co/100x100/222/fff?text=O" alt="Profile">
+   <div><h3 id="profileName">ORVIX User</h3><div id="profileEmail" class="muted">Sign in to view profile.</div></div>
+  </div>
+  <hr>
+  <label>Display name</label><input id="displayName" class="field" placeholder="Your name">
+  <label>Profile photo</label><input id="avatarFile" class="field" type="file" accept="image/*">
+  <label>Bio</label><textarea id="profileBio" class="field" placeholder="About you"></textarea>
+  <button class="btn primary" onclick="saveProfile()">Save profile</button>
+  <hr><h3>Your posts</h3><div id="myPosts"></div>
+ </div>
+</section>
+
+<section class="page" id="page-account">
+ <div class="card">
+  <h2>⚙ Account & Setup</h2>
+  <p class="muted">Create an account or sign in to use Firebase features.</p>
+  <label>Email address</label><input id="authEmail" class="field" type="email" placeholder="you@example.com">
+  <label>Password</label><input id="authPassword" class="field" type="password" placeholder="At least 6 characters">
+  <div class="btnrow">
+   <button class="btn primary" onclick="signUp()">Create account</button>
+   <button class="btn" onclick="signIn()">Sign in</button>
+   <button class="btn danger" onclick="signOutUser()">Sign out</button>
+  </div>
+  <p id="accountMessage" class="muted" style="margin-top:14px">Not signed in.</p>
+ </div>
+ <div class="card">
+  <h3>App information</h3>
+  <p class="muted">ORVIX<br>MADE IN MIAN ABDULLAH GULZAR<br>Black + White Premium UI<br>Client-side upload limit: 500 MiB</p>
+  <p class="muted">Production requires secure Firebase rules, reporting, moderation and privacy terms.</p>
+ </div>
+</section>
 </main>
 
 <aside class="rightbar">
-  <div class="card">
-    <div class="profile-mini">
-      <img class="avatar" id="rightAvatar" src="https://placehold.co/100x100/222/fff?text=O" alt="Your avatar">
-      <div class="details"><strong id="rightName">ORVIX Creator</strong><p id="rightHandle">@creator</p></div>
-      <button class="follow-btn" onclick="navigate('profile')">View</button>
-    </div>
-  </div>
-  <div class="card">
-    <h3 class="section-title">Trending on ORVIX</h3>
-    <div class="trend"><small>🌎 Global · Topic 1</small><strong>#ExploreTheWorld</strong><small>Discover new places</small></div>
-    <div class="trend"><small>🎬 Creators · Topic 2</small><strong>#CreatorLife</strong><small>Ideas worth sharing</small></div>
-    <div class="trend"><small>💡 Technology · Topic 3</small><strong>#FutureTech</strong><small>What's next?</small></div>
-    <div class="trend"><small>🌱 Community · Topic 4</small><strong>#BetterTogether</strong><small>Make a positive impact</small></div>
-  </div>
-  <div class="card">
-    <h3 class="section-title">Creators to discover</h3>
-    <div class="suggest-row"><img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Amelia"><div class="details"><strong>Amelia Rose</strong><small>Travel & lifestyle</small></div><button class="follow-btn" onclick="toast('Sign in to follow creators')">Follow</button></div>
-    <div class="suggest-row"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Alex"><div class="details"><strong>Alex Morgan</strong><small>Technology</small></div><button class="follow-btn" onclick="toast('Sign in to follow creators')">Follow</button></div>
-    <div class="suggest-row"><img class="avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100" alt="Sofia"><div class="details"><strong>Sofia Lee</strong><small>Art & culture</small></div><button class="follow-btn" onclick="toast('Sign in to follow creators')">Follow</button></div>
-  </div>
-  <footer>© 2026 ORVIX · MADE IN MIAN ABDULLAH GULZAR<br>Respect others. Share responsibly.</footer>
+ <div class="card"><h3>✧ ORVIX Highlights</h3>
+  <div class="tile"><div class="bigico">🌐</div><h3>Global connection</h3><p class="muted">Connect across languages.</p></div>
+  <div class="tile" style="margin-top:10px"><div class="bigico">🎥</div><h3>Creator space</h3><p class="muted">Share photos and videos.</p></div>
+ </div>
+ <div class="card"><h3>Quick actions</h3>
+  <button class="btn" style="width:100%;margin-bottom:8px" onclick="showPage('messages')">✉ Messages</button>
+  <button class="btn" style="width:100%;margin-bottom:8px" onclick="showPage('market')">◇ Marketplace</button>
+  <button class="btn" style="width:100%" onclick="showPage('translate')">文 Translator</button>
+ </div>
 </aside>
 </div>
 
-<nav class="bottom-nav">
-  <button class="active" data-page="home" onclick="navigate('home')"><i class="fa-solid fa-house"></i>Home</button>
-  <button data-page="explore" onclick="navigate('explore')"><i class="fa-solid fa-compass"></i>Explore</button>
-  <button data-page="shorts" onclick="navigate('shorts')"><i class="fa-brands fa-youtube"></i>Shorts</button>
-  <button data-page="create" onclick="navigate('create')"><i class="fa-solid fa-plus-circle"></i>Create</button>
-  <button data-page="profile" onclick="navigate('profile')"><i class="fa-regular fa-user"></i>Profile</button>
+<nav class="mobilebar">
+ <button onclick="showPage('home')">⌂<small>Home</small></button>
+ <button onclick="showPage('shorts')">▶<small>Shorts</small></button>
+ <button onclick="showPage('explore')">⌕<small>Explore</small></button>
+ <button onclick="showPage('messages')">✉<small>Chat</small></button>
+ <button onclick="showPage('profile')">◉<small>Profile</small></button>
+ <button onclick="showPage('account')">⚙<small>Account</small></button>
 </nav>
-</div>
-
-<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
-
-<script type="module">
-/*
-  ORVIX starter application.
-  Firebase is optional for the local demo.
-  To enable accounts and cloud posts, replace the config below.
-*/
-const firebaseConfig = {
-  apiKey: "PASTE_ORVIX_API_KEY",
-  authDomain: "orvex-a1a07.firebaseapp.com",
-  projectId: "orvex-a1a07",
-  storageBucket: "orvex-a1a07.firebasestorage.app",
-  messagingSenderId: "PASTE_ORVIX_SENDER_ID",
-  appId: "PASTE_ORVIX_APP_ID"
-};
-
-let auth = null, db = null, storage = null;
-let currentUser = null;
-let firebaseReady = false;
-
-const $ = id => document.getElementById(id);
-const localPosts = [];
-let currentFeed = "forYou";
-let currentSport = "soccer";
-let toastTimer;
-
-window.toast = function(message) {
-  const el = $("toast");
-  el.textContent = message;
-  el.classList.remove("hidden");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.add("hidden"), 3000);
-};
-
-window.navigate = function(page) {
-  document.querySelectorAll(".page").forEach(el => el.classList.remove("active"));
-  const section = $("page-" + page);
-  if (section) section.classList.add("active");
-
-  document.querySelectorAll("[data-page]").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.page === page);
-  });
-  window.scrollTo({top:0,behavior:"smooth"});
-
-  if (page === "shorts") {
-    const videos = document.querySelectorAll("#shortsFeed video");
-    videos.forEach(v => v.play().catch(() => {}));
-  } else {
-    document.querySelectorAll("#shortsFeed video").forEach(v => v.pause());
-  }
-};
-
-window.toggleLike = function(button) {
-  button.classList.toggle("liked");
-  const icon = button.querySelector("i");
-  if (icon) {
-    icon.classList.toggle("fa-solid");
-    icon.classList.toggle("fa-regular");
-  }
-  const count = button.querySelector("span");
-  if (count) {
-    const n = parseInt(count.textContent.replace(/[^\d]/g,""),10) || 0;
-    count.textContent = button.classList.contains("liked") ? String(n+1) : String(Math.max(0,n-1));
-  }
-};
-
-window.sharePage = async function() {
-  try {
-    if (navigator.share) {
-      await navigator.share({title:"ORVIX",text:"Discover ORVIX — Made in Mian Abdullah Gulzar",url:location.href});
-    } else if (navigator.clipboard) {
-      await navigator.clipboard.writeText(location.href);
-      toast("Link copied!");
-    } else toast("Copy this page URL to share ORVIX.");
-  } catch (e) {
-    if (e.name !== "AbortError") toast("Unable to share right now.");
-  }
-};
-
-window.setFeed = function(type, button) {
-  currentFeed = type;
-  document.querySelectorAll(".feed-tabs .pill").forEach(b => b.classList.remove("selected"));
-  button.classList.add("selected");
-  renderPosts();
-};
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, ch => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[ch]));
-}
-
-function renderPosts() {
-  const feed = $("feed");
-  feed.querySelectorAll(".local-post").forEach(el => el.remove());
-  const posts = [...localPosts].reverse();
-  if (!posts.length) return;
-
-  posts.forEach(post => {
-    const article = document.createElement("article");
-    article.className = "card post local-post";
-    const caption = escapeHTML(post.caption);
-    const name = escapeHTML(post.name);
-    const media = post.media ? `<img class="post-media" src="${post.media}" alt="User post media">` : "";
-    article.innerHTML = `
-      <div class="post-header">
-        <img class="avatar" src="${escapeHTML(post.avatar)}" alt="">
-        <div class="post-user"><strong>${name}</strong><p>${escapeHTML(post.handle)} · Just now</p></div>
-        <button class="icon-btn" aria-label="Post options" onclick="toast('Demo post options')"><i class="fa-solid fa-ellipsis"></i></button>
-      </div>
-      <div class="post-caption">${caption}</div>
-      ${media}
-      <div class="post-actions">
-        <button class="action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span>0</span></button>
-        <button class="action-btn" onclick="toast('Comments need a connected account')"><i class="fa-regular fa-comment"></i> 0</button>
-        <button class="action-btn" onclick="sharePage()"><i class="fa-solid fa-share"></i></button>
-        <span class="post-count">ORVIX</span>
-      </div>`;
-    feed.prepend(article);
-  });
-  $("postStat").textContent = String(localPosts.length);
-  renderProfilePosts();
-}
-
-window.quickCreate = function() {
-  const input = $("quickPost");
-  if (!input.value.trim()) {
-    navigate("create");
-    $("postCaption").focus();
-    return;
-  }
-  localPosts.push({
-    caption:input.value.trim(),name:$("profileName").textContent,
-    handle:$("profileHandle").textContent,avatar:$("profileAvatar").src,media:null
-  });
-  input.value = "";
-  renderPosts();
-  toast("Post added to this demo feed.");
-};
-
-window.createPost = async function() {
-  const caption = $("postCaption").value.trim();
-  const file = $("postMedia").files[0];
-  const message = $("createMessage");
-
-  if (!caption && !file) {
-    message.textContent = "Please write something or select a photo/video.";
-    return;
-  }
-  if (file && file.size > 20 * 1024 * 1024) {
-    message.textContent = "Please choose a media file smaller than 20 MB.";
-    return;
-  }
-
-  let media = null;
-  if (file) {
-    media = await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(new Error("Unable to read this file."));
-      reader.readAsDataURL(file);
-    }).catch(() => null);
-
-    if (!media) {
-      message.textContent = "Unable to load this media file.";
-      return;
-    }
-  }
-
-  localPosts.push({
-    caption,name:$("profileName").textContent,
-    handle:$("profileHandle").textContent,
-    avatar:$("profileAvatar").src,media
-  });
-  $("postCaption").value = "";
-  $("postMedia").value = "";
-  $("mediaPreview").classList.add("hidden");
-  message.textContent = "Published to the local demo feed. Connect Firebase to share across devices.";
-  renderPosts();
-  navigate("home");
-  toast("Your post is ready!");
-};
-
-function renderProfilePosts() {
-  const area = $("profilePosts");
-  if (!localPosts.length) {
-    area.textContent = "Your posts will appear here.";
-    return;
-  }
-  area.innerHTML = "";
-  [...localPosts].reverse().forEach(p => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.style.marginTop = "10px";
-    const text = document.createElement("p");
-    text.textContent = p.caption || "Media post";
-    text.style.fontSize = "13px";
-    div.appendChild(text);
-    if (p.media) {
-      const img = document.createElement("img");
-      img.src = p.media;
-      img.alt = "Your post";
-      img.style.maxHeight = "200px";
-      img.style.objectFit = "contain";
-      div.appendChild(img);
-    }
-    area.appendChild(div);
-  });
-}
-
-window.saveProfile = function() {
-  const name = $("displayName").value.trim() || "ORVIX Creator";
-  const bio = $("displayBio").value.trim() || "Discover. Create. Connect. 🌍";
-  const country = $("displayCountry").value;
-  $("profileName").textContent = name;
-  $("profileBio").textContent = bio;
-  $("profileHandle").textContent = "@" + name.toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,24);
-  $("rightName").textContent = name;
-  $("rightHandle").textContent = $("profileHandle").textContent;
-  localStorage.setItem("orvix_profile", JSON.stringify({name,bio,country}));
-  $("profileMessage").textContent = "Profile saved in this browser.";
-  renderPosts();
-  toast("Profile saved.");
-};
-
-window.signIn = async function() {
-  if (!firebaseReady) {
-    $("authMessage").textContent = "Firebase is not configured yet. Follow the setup instructions below the code.";
-    return;
-  }
-  try {
-    const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-    await signInWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
-  } catch (e) {
-    $("authMessage").textContent = e.message || "Unable to sign in.";
-  }
-};
-
-window.signUp = async function() {
-  if (!firebaseReady) {
-    $("authMessage").textContent = "Firebase is not configured yet. Follow the setup instructions below the code.";
-    return;
-  }
-  try {
-    const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-    await createUserWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
-  } catch (e) {
-    $("authMessage").textContent = e.message || "Unable to create account.";
-  }
-};
-
-window.signOutUser = async function() {
-  if (!firebaseReady) {
-    currentUser = null;
-    $("accountStatus").textContent = "Demo mode — not signed in.";
-    $("authMessage").textContent = "You are using local demo mode.";
-    return;
-  }
-  try {
-    const { signOut } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-    await signOut(auth);
-  } catch (e) {
-    $("authMessage").textContent = e.message || "Unable to sign out.";
-  }
-};
-
-window.translateText = async function() {
-  const text = $("translateInput").value.trim();
-  if (!text) {
-    toast("Enter some text to translate.");
-    return;
-  }
-  const from = $("sourceLang").value;
-  const to = $("targetLang").value;
-  $("translateOutput").value = "Translating…";
-  try {
-    const url = "https://api.mymemory.translated.net/get?q=" +
-      encodeURIComponent(text) + "&langpair=" +
-      encodeURIComponent((from === "auto" ? "en" : from) + "|" + to);
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Translation service unavailable.");
-    const data = await response.json();
-    if (data.responseStatus !== 200) throw new Error(data.responseDetails || "Translation unavailable.");
-    $("translateOutput").value = data.responseData?.translatedText || "No translation returned.";
-  } catch (e) {
-    $("translateOutput").value = "Translation is temporarily unavailable. Please try again later.";
-  }
-};
-
-window.copyTranslation = async function() {
-  const text = $("translateOutput").value;
-  if (!text) {
-    toast("There is no translation to copy.");
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(text);
-    toast("Translation copied.");
-  } catch (e) {
-    $("translateOutput").focus();
-    $("translateOutput").select();
-    toast("Select the text and copy it.");
-  }
-};
-
-window.chooseTool = function(type) {
-  $("aiType").value = type;
-  $("aiTopic").focus();
-  $("aiTopic").scrollIntoView({behavior:"smooth",block:"center"});
-};
-
-window.runCreatorTool = function() {
-  const type = $("aiType").value;
-  const topic = $("aiTopic").value.trim() || "your next creation";
-  const safeTopic = topic.replace(/[<>]/g,"");
-  const templates = {
-    caption: `✨ ${safeTopic}\nEvery moment is a chance to create something meaningful.\nWhat do you think? Share your thoughts below!`,
-    bio: `${safeTopic} enthusiast 🌍\nCreating, learning and connecting.\nWelcome to my ORVIX world ✨`,
-    hashtags: `Suggested topic tags:\n#${safeTopic.split(/\s+/).filter(Boolean).slice(0,3).join("")} #ORVIX #CreatorLife #Discover #Trending`,
-    idea: `Video ideas about ${safeTopic}:\n1. Share 3 surprising facts.\n2. Show a quick before-and-after.\n3. Answer a common question.\n4. Tell a 30-second personal story.\n5. Ask your audience a question.`
-  };
-  $("aiOutput").value = templates[type] || templates.caption;
-};
-
-window.loadNews = async function() {
-  const country = $("newsCountry").value;
-  const results = $("newsResults");
-  $("googleNewsLink").href = "https://news.google.com/search?q=" + encodeURIComponent(country);
-  results.innerHTML = '<div class="loading">Loading public news headlines…</div>';
-
-  try {
-    const query = encodeURIComponent(country + " news");
-    const url = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + query +
-      "&mode=ArtList&format=json&maxrecords=12&sort=HybridRel";
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("News feed unavailable.");
-    const data = await response.json();
-    const articles = (data.articles || []).slice(0,10);
-    if (!articles.length) throw new Error("No headlines found.");
-
-    results.innerHTML = "";
-    articles.forEach(article => {
-      const card = document.createElement("article");
-      card.className = "news-card";
-      const image = document.createElement("img");
-      image.loading = "lazy";
-      image.alt = "News image";
-      image.src = article.socialimage || "https://placehold.co/600x300/161616/fff?text=World+News";
-      image.onerror = () => { image.src = "https://placehold.co/600x300/161616/fff?text=World+News"; };
-      const body = document.createElement("div");
-      body.className = "news-body";
-      const title = document.createElement("h3");
-      title.textContent = article.title || "News headline";
-      const source = document.createElement("p");
-      source.textContent = article.domain || article.sourcecountry || "Public news feed";
-      const link = document.createElement("a");
-      link.href = article.url || "#";
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Read full story →";
-      body.append(title,source,link);
-      card.append(image,body);
-      results.appendChild(card);
-    });
-  } catch (e) {
-    results.innerHTML = "";
-    const message = document.createElement("div");
-    message.className = "card";
-    message.textContent = "The public news feed is unavailable right now. Use Google News to view current headlines.";
-    results.appendChild(message);
-  }
-};
-
-window.loadSports = async function(sport, button) {
-  currentSport = sport || currentSport;
-  if (button) {
-    document.querySelectorAll("#page-sports .chip-row .pill").forEach(b => b.classList.remove("selected"));
-    button.classList.add("selected");
-  }
-  const area = $("sportsResults");
-  area.innerHTML = '<div class="loading">Loading scoreboard…</div>';
-
-  const endpoints = {
-    soccer:"https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
-    cricket:"https://site.api.espn.com/apis/site/v2/sports/cricket/icc.trophy/scoreboard",
-    basketball:"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
-    baseball:"https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
-    hockey:"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
-  };
-
-  try {
-    const response = await fetch(endpoints[currentSport]);
-    if (!response.ok) throw new Error("Scoreboard unavailable.");
-    const data = await response.json();
-    const events = data.events || [];
-    if (!events.length) throw new Error("No scores available.");
-
-    area.innerHTML = "";
-    events.slice(0,10).forEach(event => {
-      const competition = event.competitions?.[0];
-      const competitors = competition?.competitors || [];
-      const home = competitors.find(c => c.homeAway === "home") || competitors[0];
-      const away = competitors.find(c => c.homeAway === "away") || competitors[1];
-      const row = document.createElement("div");
-      row.className = "score-row";
-      const left = document.createElement("div");
-      left.className = "team";
-      left.textContent = away?.team?.displayName || "Team A";
-      const score = document.createElement("div");
-      score.className = "score";
-      score.textContent = (away?.score ?? "-") + " : " + (home?.score ?? "-");
-      const right = document.createElement("div");
-      right.className = "team";
-      right.style.textAlign = "right";
-      right.textContent = home?.team?.displayName || "Team B";
-      row.append(left,score,right);
-      area.appendChild(row);
-
-      const status = document.createElement("div");
-      status.className = "muted small";
-      status.style.padding = "0 0 12px";
-      status.textContent = event.status?.type?.detail || event.date || "";
-      area.appendChild(status);
-    });
-  } catch (e) {
-    area.innerHTML = "";
-    const message = document.createElement("p");
-    message.className = "muted small";
-    message.textContent = "Live scores are unavailable from this feed right now. Visit ESPN or the official sports website for current results.";
-    area.appendChild(message);
-  }
-};
-
-function loadSavedProfile() {
-  try {
-    const saved = JSON.parse(localStorage.getItem("orvix_profile") || "null");
-    if (saved) {
-      $("displayName").value = saved.name || "";
-      $("displayBio").value = saved.bio || "";
-      $("displayCountry").value = saved.country || "Pakistan";
-      $("profileName").textContent = saved.name || "ORVIX Creator";
-      $("profileBio").textContent = saved.bio || "Discover. Create. Connect. 🌍";
-      $("profileHandle").textContent = "@" + (saved.name || "creator").toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,24);
-      $("rightName").textContent = $("profileName").textContent;
-      $("rightHandle").textContent = $("profileHandle").textContent;
-    }
-  } catch (e) {
-    console.warn("Could not load local profile.", e);
-  }
-}
-
-$("globalSearch").addEventListener("keydown", event => {
-  if (event.key === "Enter") {
-    const q = $("globalSearch").value.trim();
-    if (!q) return;
-    navigate("explore");
-    toast("Search UI ready. Connect a searchable posts database to search globally.");
-  }
-});
-
-$("postMedia").addEventListener("change", () => {
-  const file = $("postMedia").files[0];
-  const preview = $("mediaPreview");
-  preview.innerHTML = "";
-  if (!file) {
-    preview.classList.add("hidden");
-    return;
-  }
-  const url = URL.createObjectURL(file);
-  const el = document.createElement(file.type.startsWith("video/") ? "video" : "img");
-  el.src = url;
-  el.style.maxHeight = "240px";
-  el.style.display = "block";
-  el.style.margin = "12px 0";
-  if (el.tagName === "VIDEO") el.controls = true;
-  preview.appendChild(el);
-  preview.classList.remove("hidden");
-});
-
-$("displayAvatar").addEventListener("change", () => {
-  const file = $("displayAvatar").files[0];
-  if (!file) return;
-  if (!file.type.startsWith("image/")) {
-    toast("Choose an image file for your profile photo.");
-    return;
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    toast("Choose a profile image under 5 MB.");
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = () => {
-    ["profileAvatar","topAvatar","rightAvatar","composerAvatar"].forEach(id => {
-      $(id).src = reader.result;
-    });
-    localStorage.setItem("orvix_avatar", reader.result);
-  };
-  reader.readAsDataURL(file);
-});
-
-loadSavedProfile();
-
-try {
-  const savedAvatar = localStorage.getItem("orvix_avatar");
-  if (savedAvatar) ["profileAvatar","topAvatar","rightAvatar","composerAvatar"].forEach(id => $(id).src = savedAvatar);
-} catch (e) {}
-
-async function initializeFirebase() {
-  const hasConfig = firebaseConfig.apiKey.startsWith("AIza") &&
-    !firebaseConfig.apiKey.includes("PASTE_") &&
-    !firebaseConfig.messagingSenderId.includes("PASTE_") &&
-    !firebaseConfig.appId.includes("PASTE_");
-
-  if (!hasConfig) {
-    $("accountStatus").textContent = "Demo mode — add your Firebase web app configuration to enable accounts.";
-    return;
-  }
-
-  try {
-    const appModule = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
-    const authModule = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-    const firestoreModule = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-    const app = appModule.initializeApp(firebaseConfig);
-    auth = authModule.getAuth(app);
-    db = firestoreModule.getFirestore(app);
-    firebaseReady = true;
-
-    authModule.onAuthStateChanged(auth, user => {
-      currentUser = user;
-      $("accountStatus").textContent = user
-        ? "Signed in as " + user.email
-        : "Not signed in.";
-      $("authMessage").textContent = user ? "Account ready." : "";
-      if (user && !$("displayName").value) {
-        $("displayName").value = user.displayName || user.email.split("@")[0];
-      }
-    });
-  } catch (e) {
-    console.error("Firebase initialization failed:",e);
-    $("accountStatus").textContent = "Firebase could not initialize. Check your web app configuration.";
-  }
-}
-
-initializeFirebase();
-</script>
+<div id="toast"></div>
+<footer>ORVIX © 2026 · MADE IN MIAN ABDULLAH GULZAR</footer>
 </body>
 </html>
