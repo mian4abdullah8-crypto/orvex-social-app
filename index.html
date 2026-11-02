@@ -5,598 +5,349 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
-<meta name="description" content="ORVEX — Connect, discover and create. Made in Mian Abdullah.">
-<title>ORVEX — MADE IN MIAN ABDULLAH</title>
-
+<title>ORVEX | MADE IN MIAN ABDULLAH</title>
 <style>
-:root {
-  --bg:#080808; --panel:#121212; --panel2:#1b1b1b;
-  --text:#f7f7f7; --muted:#a5a5a5; --line:#292929;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:Inter,Arial,Helvetica,sans-serif;
-  transition:background .2s,color .2s;
-}
-body.light {
-  --bg:#f5f5f5; --panel:#fff; --panel2:#ededed;
-  --text:#111; --muted:#626262; --line:#ddd;
-}
-button,input,textarea,select { font:inherit; }
-button { cursor:pointer; }
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
-  outline:2px solid #999; outline-offset:3px;
-}
-.topbar {
-  height:72px; position:sticky; top:0; z-index:10;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 4%; background:var(--bg); border-bottom:1px solid var(--line);
-}
-.brand { color:var(--text); text-decoration:none; font-size:27px; font-weight:950; letter-spacing:4px; }
-.brand small { display:block; margin-top:4px; font-size:9px; letter-spacing:2px; color:var(--muted); }
-.top-actions { display:flex; align-items:center; gap:12px; }
-.layout {
-  max-width:1500px; margin:auto; padding:24px 3%;
-  display:grid; grid-template-columns:220px minmax(0,1fr) 245px; gap:22px;
-}
-.sidebar { position:sticky; top:95px; height:fit-content; }
-.nav-btn {
-  display:flex; align-items:center; gap:13px; width:100%;
-  margin-bottom:5px; padding:13px; text-align:left;
-  border:1px solid transparent; border-radius:13px;
-  background:transparent; color:var(--text); font-weight:650;
-}
-.nav-btn:hover,.nav-btn.active { background:var(--panel2); border-color:var(--line); }
-.icon { display:inline-grid; place-items:center; width:25px; height:25px; flex-shrink:0; }
-.icon svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-.card { background:var(--panel); border:1px solid var(--line); border-radius:19px; padding:20px; margin-bottom:18px; }
-.btn {
-  background:var(--panel2); color:var(--text); border:1px solid var(--line);
-  padding:11px 15px; border-radius:11px; font-weight:700;
-}
-.btn.primary { background:var(--text); color:var(--bg); border-color:var(--text); }
-.btn:hover,.action:hover { opacity:.82; }
-.hero {
-  min-height:245px; padding:clamp(24px,5vw,48px);
-  display:flex; align-items:center;
-  background:radial-gradient(ellipse at 80% 15%,#41414155,transparent 40%),
-  linear-gradient(135deg,var(--panel2),var(--panel));
-}
-.eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; color:var(--muted); }
-.hero h1 { font-size:clamp(40px,6vw,67px); line-height:1; letter-spacing:-2px; margin:14px 0; }
-.hero p { color:var(--muted); max-width:480px; line-height:1.7; }
-.title { margin:8px 0 17px; font-size:21px; }
-.page { display:none; }
-.page.active { display:block; }
-.field,textarea,select {
-  display:block; width:100%; padding:13px 14px; margin:8px 0 14px;
-  color:var(--text); background:var(--bg); border:1px solid var(--line); border-radius:12px;
-}
-textarea { resize:vertical; min-height:85px; }
-.muted,.status { color:var(--muted); font-size:13px; line-height:1.6; }
-.status { overflow-wrap:anywhere; }
-.row { display:flex; align-items:center; gap:12px; }
-.avatar {
-  width:43px; height:43px; flex-shrink:0; border-radius:50%;
-  background:var(--text); color:var(--bg); display:grid; place-items:center; font-weight:900;
-}
-.story-list { display:flex; gap:14px; overflow-x:auto; padding:5px 0 12px; }
-.story { flex:0 0 70px; text-align:center; color:var(--muted); font-size:12px; }
-.story-add { border:0; padding:0; background:transparent; color:inherit; }
-.story-ring {
-  width:65px; height:65px; padding:3px; margin:0 auto 7px; border-radius:50%;
-  background:conic-gradient(#fff,#777,#eee,#555,#fff);
-}
-.story-inner {
-  width:100%; height:100%; border:3px solid var(--bg); border-radius:50%;
-  display:grid; place-items:center; overflow:hidden; background:var(--panel); font-size:23px;
-}
-.story-inner img,.story-inner video { width:100%; height:100%; object-fit:cover; }
-.actions { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-top:13px; }
-.action { padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:var(--panel2); color:var(--text); }
-.preview { margin-top:12px; }
-.preview img,.preview video { display:block; width:100%; max-height:430px; object-fit:contain; border-radius:13px; background:#000; }
-.post-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.8; }
-.notice { padding:13px; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:13px; line-height:1.7; }
-.feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
-.feature { padding:22px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(140deg,var(--panel2),var(--panel)); }
-.feature .emoji { font-size:30px; margin-bottom:14px; }
-.feature h3 { margin:0 0 8px; }
-.feature p { color:var(--muted); font-size:13px; line-height:1.6; }
-.right-card { padding:18px; background:var(--panel); border:1px solid var(--line); border-radius:17px; margin-bottom:16px; }
-.trend { padding:12px 0; border-bottom:1px solid var(--line); }
-.trend:last-child { border-bottom:0; }
-.mobile-nav { display:none; }
-.footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.9; }
-@media(max-width:1050px) {
-  .layout { grid-template-columns:185px minmax(0,1fr); }
-  .rightbar { display:none; }
-}
-@media(max-width:700px) {
-  .topbar { height:65px; padding:0 13px; }
-  .brand { font-size:22px; }
-  .top-actions .muted { display:none; }
-  .top-actions .btn { padding:9px 11px; font-size:12px; }
-  .layout { display:block; padding:14px 11px 90px; }
-  .sidebar { display:none; }
-  .hero { min-height:220px; padding:25px; }
-  .hero h1 { font-size:44px; }
-  .card { padding:16px; border-radius:16px; }
-  .feature-grid { grid-template-columns:1fr; }
-  .mobile-nav {
-    position:fixed; bottom:0; left:0; right:0; z-index:20;
-    display:flex; justify-content:space-around; padding:8px 2px calc(8px + env(safe-area-inset-bottom));
-    background:var(--bg); border-top:1px solid var(--line);
-  }
-  .mobile-nav button { border:0; background:transparent; color:var(--text); font-size:10px; padding:5px; }
-  .mobile-nav svg { display:block; width:22px; height:22px; margin:0 auto 4px; }
+:root{color-scheme:dark;--bg:#080808;--panel:#151515;--line:#292929;--pink:#ff3158;--muted:#aaa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font:15px Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;color:white;background:#202020;border:1px solid #353535;border-radius:12px;padding:11px 14px}
+button:hover{border-color:var(--pink)}
+.primary{background:var(--pink);border-color:var(--pink);font-weight:bold}
+input,select,textarea{width:100%;padding:12px;background:#0d0d0d;color:white;border:1px solid #363636;border-radius:11px}
+a{color:#ff6380}
+header{position:sticky;top:0;z-index:10;background:#090909ee;backdrop-filter:blur(15px);border-bottom:1px solid var(--line);height:65px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.logo{font-size:27px;font-weight:1000;letter-spacing:2px}.logo span{color:var(--pink)}
+.tag{font-size:9px;letter-spacing:1.3px;color:#aaa;margin-top:3px}
+.layout{display:grid;grid-template-columns:210px minmax(0,650px) 250px;gap:20px;justify-content:center;padding:20px}
+aside{position:sticky;top:85px;align-self:start}
+.panel,.post{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:15px}
+.nav{width:100%;text-align:left;display:block;background:transparent;border:0;margin:3px 0;padding:13px}
+.nav.active,.nav:hover{background:#222}
+.page{display:none}.page.active{display:block}
+.muted,.small{color:var(--muted);font-size:12px;line-height:1.6}
+.row{display:flex;gap:10px;align-items:center}
+.between{justify-content:space-between}
+.avatar{height:43px;width:43px;border-radius:50%;object-fit:cover;background:#292929;flex-shrink:0}
+.bigavatar{width:100px;height:100px;border:3px solid #444}
+.posthead{display:flex;gap:10px;align-items:center;padding-bottom:12px}
+.post img.media,.post video.media{width:100%;max-height:620px;object-fit:contain;background:#000;border-radius:10px}
+.caption{white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:12px}
+.storyrow{display:flex;gap:12px;overflow:auto;margin-bottom:15px}
+.story{min-width:60px;text-align:center;font-size:11px}
+.story img{width:55px;height:55px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);padding:2px}
+.shortlist{height:calc(100dvh - 105px);overflow-y:auto;scroll-snap-type:y mandatory}
+.short{position:relative;max-width:470px;height:calc(100dvh - 125px);min-height:430px;background:#000;border-radius:17px;overflow:hidden;margin:0 auto 15px;scroll-snap-align:start}
+.short video{height:100%;width:100%;object-fit:contain;background:#000}
+.shortinfo{position:absolute;bottom:15px;left:15px;right:68px;z-index:2;text-shadow:0 1px 5px #000}
+.shortbuttons{position:absolute;right:10px;bottom:20px;z-index:3;display:grid;gap:12px}
+.shortbuttons button{border-radius:50%;width:45px;height:45px;padding:0;background:#171717dd}
+.cover{height:130px;background:linear-gradient(130deg,#111,#501426,#171717);border-radius:12px}
+.profilehead{display:flex;gap:15px;align-items:center;padding:0 10px;margin-top:-40px;position:relative;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.grid img,.grid video{width:100%;aspect-ratio:1;object-fit:cover;background:#222}
+.item{padding:14px 0;border-bottom:1px solid #333}
+.item:last-child{border:0}
+.modal{position:fixed;inset:0;z-index:30;background:#000c;display:flex;align-items:center;justify-content:center;padding:15px}
+.modalbox{background:#171717;border:1px solid #444;border-radius:18px;padding:22px;width:min(420px,100%);max-height:90vh;overflow:auto}
+.stack{display:grid;gap:12px}
+.hidden{display:none!important}
+.badge{background:#272727;border-radius:7px;padding:5px 8px;font-size:11px}
+footer{text-align:center;color:#777;font-size:11px;padding:20px}
+@media(max-width:1050px){.layout{grid-template-columns:180px minmax(0,650px)}.right{display:none}}
+@media(max-width:700px){
+ header{height:58px;padding:0 12px}.logo{font-size:23px}
+ .layout{display:block;padding:10px}.left{display:flex;position:fixed;z-index:20;top:auto;bottom:0;left:0;right:0;background:#090909;border-top:1px solid #333;padding:4px;justify-content:space-around}
+ .nav{font-size:10px;text-align:center;padding:9px 3px;flex:1;margin:0}.nav span{display:block;font-size:18px;margin-bottom:3px}
+ .left h3,.left .small{display:none}.main{padding-bottom:65px}
+ .shortlist{height:calc(100dvh - 140px)}.short{height:calc(100dvh - 150px);min-height:400px}
 }
 </style>
 </head>
-
 <body>
-
-<!-- High-resolution vector icons -->
-<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden">
-  <symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></symbol>
-  <symbol id="video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3z"/></symbol>
-  <symbol id="news" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></symbol>
-  <symbol id="sports" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 3 3 6-3 4-6-1-3 4m12-7 6-2m-9 5 5 4-2 5"/></symbol>
-  <symbol id="live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></symbol>
-  <symbol id="chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></symbol>
-  <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
-  <symbol id="settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19 13 2 2-2 4-3-1-2 1-1 3H9l-1-3-2-1-3 1-2-4 2-2v-2L1 9l2-4 3 1 2-1 1-3h4l1 3 2 1 3-1 2 4-2 2z" transform="translate(1 1) scale(.92)"/></symbol>
-  <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
-</svg>
-
-<header class="topbar">
-  <a class="brand" href="#" onclick="showPage('home');return false">ORVEX<small>MADE IN MIAN ABDULLAH</small></a>
-  <div class="top-actions"><span class="muted" id="user-status">Guest mode</span><button class="btn primary" onclick="showPage('account')">Sign in</button></div>
+<header>
+ <div><div class="logo">ORV<span>EX</span></div><div class="tag">MADE IN MIAN ABDULLAH</div></div>
+ <div class="row"><button id="loginBtn" class="primary" onclick="openAuth()">Login</button><img id="headerAvatar" class="avatar hidden" alt="Profile" onclick="go('profile')"></div>
 </header>
 
 <div class="layout">
-<aside class="sidebar">
-  <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span class="icon"><svg><use href="#home"/></svg></span>Home</button>
-  <button class="nav-btn" data-page="videos" onclick="showPage('videos')"><span class="icon"><svg><use href="#video"/></svg></span>Videos</button>
-  <button class="nav-btn" data-page="news" onclick="showPage('news')"><span class="icon"><svg><use href="#news"/></svg></span>News</button>
-  <button class="nav-btn" data-page="sports" onclick="showPage('sports')"><span class="icon"><svg><use href="#sports"/></svg></span>Sports</button>
-  <button class="nav-btn" data-page="live" onclick="showPage('live')"><span class="icon"><svg><use href="#live"/></svg></span>Live channels</button>
-  <button class="nav-btn" data-page="messages" onclick="showPage('messages')"><span class="icon"><svg><use href="#chat"/></svg></span>Messages</button>
-  <button class="nav-btn" data-page="translate" onclick="showPage('translate')"><span class="icon"><svg><use href="#globe"/></svg></span>Translate</button>
-  <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span class="icon"><svg><use href="#user"/></svg></span>Profile</button>
-  <button class="nav-btn" data-page="settings" onclick="showPage('settings')"><span class="icon"><svg><use href="#settings"/></svg></span>Settings</button>
+<aside class="left">
+ <h3>ORVEX</h3>
+ <button class="nav active" data-page="home" onclick="go('home')"><span>⌂</span> Home</button>
+ <button class="nav" data-page="shorts" onclick="go('shorts')"><span>▶</span> Shorts</button>
+ <button class="nav" data-page="news" onclick="go('news')"><span>🌍</span> News</button>
+ <button class="nav" data-page="sports" onclick="go('sports')"><span>⚽</span> Sports</button>
+ <button class="nav" data-page="create" onclick="go('create')"><span>＋</span> Create</button>
+ <button class="nav" data-page="profile" onclick="go('profile')"><span>◉</span> Profile</button>
+ <button class="nav" data-page="settings" onclick="go('settings')"><span>⚙</span> Settings</button>
+ <div class="small">Your world. Your content.</div>
 </aside>
 
-<main>
-<section id="page-home" class="page active">
-  <div class="card hero"><div>
-    <div class="eyebrow">ONE WORLD. MANY VOICES.</div>
-    <h1>Welcome to<br>ORVEX.</h1>
-    <p>Connect, discover, share ideas and explore a world of creativity.</p>
-    <button class="btn primary" onclick="document.getElementById('composer').scrollIntoView({behavior:'smooth'})">Create a post ↗</button>
-  </div></div>
-
-  <div class="card">
-    <div class="eyebrow">YOUR COMMUNITY</div><h2 class="title">Stories</h2>
-    <div class="story-list" id="stories">
-      <button class="story story-add" onclick="document.getElementById('story-file').click()">
-        <div class="story-ring"><div class="story-inner">＋</div></div>Your story
-      </button>
-      <div class="story"><div class="story-ring"><div class="story-inner">🌐</div></div>World</div>
-      <div class="story"><div class="story-ring"><div class="story-inner">🎬</div></div>Creators</div>
-      <div class="story"><div class="story-ring"><div class="story-inner">🎵</div></div>Music</div>
-      <div class="story"><div class="story-ring"><div class="story-inner">⚽</div></div>Sports</div>
-    </div>
-    <input id="story-file" type="file" accept="image/*,video/*" hidden>
-    <div id="story-preview" class="preview"></div>
-    <p class="muted">Stories ka preview yahan dikhega. Public stories ke liye cloud storage chahiye.</p>
-  </div>
-
-  <div class="card" id="composer">
-    <div class="row"><div class="avatar">O</div><div><strong>Create a post</strong><div class="muted">Share your thoughts</div></div></div>
-    <textarea id="post-text" maxlength="3000" placeholder="What's on your mind?"></textarea>
-    <div class="actions">
-      <button class="action" onclick="document.getElementById('image-file').click()">＋ Add image</button>
-      <input id="image-file" type="file" accept="image/*" hidden>
-      <button class="btn primary" onclick="createPost()">Publish post</button>
-    </div>
-    <div id="image-preview" class="preview"></div>
-    <p class="muted">This starter stores posts in browser memory. Shared posts need Firestore integration.</p>
-  </div>
-  <h2 class="title">Your feed</h2><div id="feed"></div>
+<main class="main">
+<section class="page active" id="page-home">
+ <div class="panel row between"><div><h2 style="margin:0 0 6px">Welcome to ORVEX</h2><div class="small">Discover videos, creators and stories.</div></div><button class="primary" onclick="go('create')">＋ Create</button></div>
+ <div id="stories" class="storyrow"></div>
+ <div id="feed"><div class="panel">Connect Firebase to load posts.</div></div>
 </section>
 
-<section id="page-videos" class="page">
-  <div class="card hero"><div><div class="eyebrow">WATCH & DISCOVER</div><h1>ORVEX<br>Videos.</h1><p>Choose a video, preview it and upload it to your configured Firebase Storage.</p></div></div>
-  <div class="card">
-    <h2 class="title">Video studio</h2>
-    <input id="video-file" class="field" type="file" accept="video/*">
-    <div id="video-preview" class="preview notice">Select a video to preview it here.</div>
-    <button class="btn primary" onclick="uploadVideo()">Upload video</button>
-    <p id="upload-status" class="status" role="status"></p>
-    <p class="notice">Firebase Storage must be enabled and secure rules configured. Uploading does not automatically publish a video into the shared feed.</p>
-  </div>
+<section class="page" id="page-shorts">
+ <div class="row between"><h2>ORVEX Shorts</h2><span class="badge">Vertical video</span></div>
+ <div id="shortsList" class="shortlist"><div class="panel">Loading Shorts…</div></div>
 </section>
 
-<section id="page-news" class="page">
-  <div class="card hero"><div><div class="eyebrow">THE WORLD, CONNECTED</div><h1>World<br>News.</h1><p>Explore trusted news sources.</p></div></div>
-  <div class="card"><h2 class="title">News desk</h2><p>Live news requires a news API and a secure backend.</p><div class="notice">Connect a licensed provider to activate live headlines.</div></div>
+<section class="page" id="page-create">
+ <div class="panel"><h2>Create a post</h2><p class="small">Upload a photo or video. Choose Short for vertical videos.</p>
+ <form id="postForm" class="stack">
+ <textarea id="caption" rows="3" maxlength="2000" placeholder="Write a caption…"></textarea>
+ <label>Photo or video<input id="mediaFile" type="file" accept="image/*,video/*" required></label>
+ <label class="row"><input id="isShort" type="checkbox" style="width:auto"> Publish as Short (video only)</label>
+ <button id="publish" class="primary">Publish</button>
+ </form></div>
 </section>
 
-<section id="page-sports" class="page">
-  <div class="card hero"><div><div class="eyebrow">GAME ON</div><h1>ORVEX<br>Sports.</h1><p>Sports, fixtures, scores and highlights.</p></div></div>
-  <div class="feature-grid">
-    <div class="feature"><div class="emoji">⚽</div><h3>Football</h3><p>Live scores require a sports data API.</p></div>
-    <div class="feature"><div class="emoji">🏏</div><h3>Cricket</h3><p>Connect an authorized cricket data source.</p></div>
-    <div class="feature"><div class="emoji">🏀</div><h3>Basketball</h3><p>Follow competitions and teams.</p></div>
-    <div class="feature"><div class="emoji">🏆</div><h3>Highlights</h3><p>Use authorized video sources.</p></div>
-  </div>
+<section class="page" id="page-profile">
+ <div class="panel" style="padding:0;overflow:hidden">
+ <div class="cover"></div>
+ <div class="profilehead"><img id="profileAvatar" class="avatar bigavatar" alt="Profile photo"><div style="padding-top:35px"><h2 id="profileName">ORVEX Creator</h2><div id="profileEmail" class="small">Sign in to edit profile</div><div id="profileCountryText" class="small"></div></div></div>
+ <div id="bioDisplay" style="padding:12px 18px">Welcome to my ORVEX profile.</div>
+ </div>
+ <div class="panel"><h3>My posts</h3><div id="myPosts" class="grid"></div></div>
 </section>
 
-<section id="page-live" class="page">
-  <div class="card hero"><div><div class="eyebrow">LIVE ENTERTAINMENT</div><h1>Live<br>Channels.</h1><p>Play streams you own or are authorized to use.</p></div></div>
-  <div class="card"><h2 class="title">Stream player</h2>
-    <input id="stream-url" class="field" type="url" placeholder="https://your-authorized-stream-url">
-    <div class="actions"><button class="btn primary" onclick="playStream()">Play stream</button><button class="btn" onclick="stopStream()">Stop</button></div>
-    <video id="stream-player" controls playsinline style="width:100%;max-height:400px;margin-top:15px;background:#000;border-radius:12px"></video>
-    <p id="stream-status" class="status"></p>
-  </div>
+<section class="page" id="page-settings">
+ <div class="panel"><h2>Profile settings</h2>
+ <form id="profileForm" class="stack">
+ <label>Display name<input id="nameInput" maxlength="60" placeholder="Your name"></label>
+ <label>Bio<textarea id="bioInput" maxlength="300" placeholder="Tell people about yourself"></textarea></label>
+ <label>Country for news<select id="countryInput"></select></label>
+ <label>Profile picture<input id="avatarInput" type="file" accept="image/*"></label>
+ <button class="primary" id="saveProfile">Save profile</button>
+ </form><hr style="border-color:#333;margin:20px 0">
+ <button onclick="logout()">Log out</button>
+ </div>
 </section>
 
-<section id="page-messages" class="page">
-  <div class="card hero"><div><div class="eyebrow">STAY CONNECTED</div><h1>Messages.</h1><p>A foundation for global conversations.</p></div></div>
-  <div class="card"><h2 class="title">Message centre</h2><p>Real-time private messages need a database, security rules and moderation.</p><div class="notice">Private messaging is not enabled in this starter version.</div></div>
+<section class="page" id="page-news">
+ <div class="panel"><h2>Country News</h2><p class="small">News from your selected country.</p><div class="row"><select id="newsCountry"></select><button class="primary" onclick="loadNews()">Refresh</button></div></div>
+ <div class="panel"><div id="newsResults">Select your country and load news.</div><p class="small">Powered by GDELT where available. Coverage varies by country.</p></div>
 </section>
 
-<section id="page-translate" class="page">
-  <div class="card hero"><div><div class="eyebrow">LANGUAGE CONNECTS US</div><h1>Translate.</h1><p>Open a translation tool for different languages.</p></div></div>
-  <div class="card">
-    <label for="source-text">Text to translate</label>
-    <textarea id="source-text" class="field" rows="5" placeholder="Enter your text..."></textarea>
-    <label for="target-language">Target language</label>
-    <select id="target-language" class="field">
-      <option value="ur">Urdu</option><option value="en">English</option>
-      <option value="ar">Arabic</option><option value="es">Spanish</option>
-      <option value="fr">French</option><option value="hi">Hindi</option>
-      <option value="zh-CN">Chinese</option><option value="tr">Turkish</option>
-    </select>
-    <button class="btn primary" onclick="translateText()">Open translator</button>
-  </div>
-</section>
-
-<section id="page-profile" class="page">
-  <div class="card hero"><div><div class="eyebrow">YOUR DIGITAL SPACE</div><h1>Your Profile.</h1><p>Manage your personal information.</p></div></div>
-  <div class="card"><div class="row"><div class="avatar" id="profile-avatar">O</div><div><h2 id="profile-name">ORVEX Member</h2><p class="muted" id="profile-email">Guest account</p></div></div>
-    <label for="display-name">Display name</label><input id="display-name" class="field" maxlength="50" placeholder="Your name">
-    <label for="bio">Bio</label><textarea id="bio" class="field" maxlength="160" placeholder="Tell people about yourself"></textarea>
-    <button class="btn primary" onclick="saveProfile()">Save profile</button><p id="profile-status" class="status"></p>
-  </div>
-</section>
-
-<section id="page-settings" class="page">
-  <div class="card hero"><div><div class="eyebrow">PERSONALIZE YOUR SPACE</div><h1>Settings.</h1><p>Adjust your ORVEX experience.</p></div></div>
-  <div class="card"><h2 class="title">Appearance</h2>
-    <button class="btn" onclick="setTheme('dark')">Dark mode</button>
-    <button class="btn" onclick="setTheme('light')">Light mode</button>
-  </div>
-  <div class="card"><h2 class="title">Account & privacy</h2>
-    <button class="btn" onclick="showPage('account')">Manage account</button>
-    <button class="btn" onclick="showPage('profile')">Edit profile</button>
-    <p class="notice">Use secure database rules. Never publish passwords or private server keys in this file.</p>
-  </div>
-  <div class="card"><h2 class="title">About ORVEX</h2><p>Version 1.0</p><p class="muted">MADE IN MIAN ABDULLAH</p></div>
-</section>
-
-<section id="page-account" class="page">
-  <div class="card"><div class="eyebrow">WELCOME TO ORVEX</div><h1>Account</h1>
-    <label for="auth-email">Email address</label><input id="auth-email" class="field" type="email" autocomplete="email" placeholder="you@example.com">
-    <label for="auth-password">Password</label><input id="auth-password" class="field" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters">
-    <div class="actions"><button class="btn primary" onclick="signIn()">Sign in</button><button class="btn" onclick="signUp()">Create account</button></div>
-    <button class="btn" style="margin-top:12px" onclick="signInGoogle()">Continue with Google</button>
-    <button class="btn" style="margin-top:12px" onclick="signOutUser()">Sign out</button>
-    <p id="auth-status" class="status" role="status"></p>
-  </div>
+<section class="page" id="page-sports">
+ <div class="panel"><h2>Sports Centre</h2><p class="small">Scoreboards depend on the selected sport and the external provider.</p><div class="row"><select id="sport"><option value="soccer">Football</option><option value="cricket">Cricket</option><option value="basketball">Basketball</option><option value="tennis">Tennis</option><option value="americanfootball">American football</option><option value="baseball">Baseball</option><option value="hockey">Hockey</option></select><button class="primary" onclick="loadSports()">Get scores</button></div></div>
+ <div class="panel"><div id="scoreResults">Choose a sport to load scores.</div></div>
+ <div class="panel"><h3>Official coverage</h3>
+ <p><a href="https://www.espncricinfo.com/live-cricket-score" target="_blank" rel="noopener">🏏 Cricket scores — ESPNcricinfo</a></p>
+ <p><a href="https://www.cricbuzz.com/cricket-match/live-scores" target="_blank" rel="noopener">🏏 Cricbuzz live scores</a></p>
+ <p><a href="https://www.espn.com/" target="_blank" rel="noopener">🏆 ESPN sports</a></p>
+ <p><a href="https://www.fifa.com/" target="_blank" rel="noopener">⚽ FIFA</a></p>
+ <p><a href="https://www.youtube.com/results?search_query=official+live+sports" target="_blank" rel="noopener">▶ Official sports streams on YouTube</a></p>
+ </div>
 </section>
 </main>
 
-<aside class="rightbar">
-  <div class="right-card"><h3>ORVEX TRENDING</h3>
-    <div class="trend"><strong>#Technology</strong><p class="muted">Ideas shaping tomorrow</p></div>
-    <div class="trend"><strong>#Creators</strong><p class="muted">Share your creativity</p></div>
-    <div class="trend"><strong>#WorldSports</strong><p class="muted">Sports and stories</p></div>
-  </div>
-  <div class="right-card"><h3>ABOUT ORVEX</h3><p class="muted">Connect. Discover. Create.</p><strong>MADE IN MIAN ABDULLAH</strong></div>
+<aside class="right">
+ <div class="panel"><h3>ORVEX Global</h3><p class="small">Short videos. People. News. Sports.</p><span class="badge">MADE IN MIAN ABDULLAH</span></div>
+ <div class="panel"><h3>Explore</h3><p><a href="#" onclick="go('shorts')">Watch Shorts</a></p><p><a href="#" onclick="go('news')">Country News</a></p><p><a href="#" onclick="go('sports')">Sports Centre</a></p></div>
 </aside>
 </div>
+<footer>ORVEX · MADE IN MIAN ABDULLAH</footer>
 
-<nav class="mobile-nav" aria-label="Mobile navigation">
-  <button onclick="showPage('home')"><svg><use href="#home"/></svg>Home</button>
-  <button onclick="showPage('videos')"><svg><use href="#video"/></svg>Videos</button>
-  <button onclick="showPage('news')"><svg><use href="#news"/></svg>News</button>
-  <button onclick="showPage('messages')"><svg><use href="#chat"/></svg>Messages</button>
-  <button onclick="showPage('settings')"><svg><use href="#settings"/></svg>Settings</button>
-</nav>
-
-<footer class="footer">ORVEX · MADE IN MIAN ABDULLAH<br>Connect. Discover. Create.</footer>
+<div id="authModal" class="modal hidden">
+ <div class="modalbox">
+ <div class="row between"><h2 id="authHeading">Join ORVEX</h2><button onclick="closeAuth()">✕</button></div>
+ <form id="authForm" class="stack">
+ <input id="authName" placeholder="Your display name">
+ <input id="authEmail" type="email" placeholder="Email address" required>
+ <input id="authPassword" type="password" minlength="6" placeholder="Password (6+ characters)" required>
+ <label id="authCountryLabel">Your country<select id="authCountry"></select></label>
+ <button class="primary" id="authSubmit">Create account</button>
+ </form>
+ <button style="width:100%;margin-top:10px" onclick="googleLogin()">Continue with Google</button>
+ <p class="small" style="margin-top:15px"><a href="#" onclick="toggleAuth(event)">Switch login / sign up</a></p>
+ <div id="authError" class="small"></div>
+ </div>
+</div>
+<div id="toast" class="panel hidden" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;max-width:90%"></div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, serverTimestamp }
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL }
-from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signOut,updateProfile as updateAuthProfile} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,collection,doc,getDoc,setDoc,addDoc,query,orderBy,limit,onSnapshot,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getStorage,ref,uploadBytesResumable,getDownloadURL} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDVbbGc1hTR06M4JJdQxBOm_8cxMsLOrZo",
-  authDomain: "orvex-a1a07.firebaseapp.com",
-  projectId: "orvex-a1a07",
-  storageBucket: "orvex-a1a07.firebasestorage.app",
-  messagingSenderId: "165210370215",
-  appId: "1:165210370215:web:ebfbd56df53c36b1a36b82",
-  measurementId: "G-VRQE59184T"
+const firebaseConfig={
+ apiKey:"AIzaSyDVbbGc1hTR06M4JJdQxBOm_8cxMsLOrZo",
+ authDomain:"orvex-a1a07.firebaseapp.com",
+ projectId:"orvex-a1a07",
+ storageBucket:"orvex-a1a07.firebasestorage.app",
+ messagingSenderId:"165210370215",
+ appId:"1:165210370215:web:ebfbd56df53c36b1a36b82",
+ measurementId:"G-VRQE591"
 };
 
-const $ = id => document.getElementById(id);
-const say = (id, text) => { $(id).textContent = text; };
-let auth = null, db = null, storage = null, currentUser = null;
-let selectedVideo = null, selectedImage = null;
+const countries=[["PK","Pakistan"],["US","United States"],["GB","United Kingdom"],["CA","Canada"],["AU","Australia"],["IN","India"],["SA","Saudi Arabia"],["AE","United Arab Emirates"],["TR","Türkiye"],["BD","Bangladesh"],["MY","Malaysia"],["ID","Indonesia"],["NG","Nigeria"],["ZA","South Africa"],["FR","France"],["DE","Germany"],["JP","Japan"],["BR","Brazil"]];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const placeholder="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="#303030"/><circle cx="50" cy="35" r="19" fill="#888"/><path d="M10 100Q10 58 50 58T90 100" fill="#888"/></svg>');
+let auth,db,storage,user=null,profile={},posts=[],unsubscribe=null,mode="signup";
 
-try {
-  const app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
-  storage = getStorage(app);
+function fillCountries(id){$(id).innerHTML=countries.map(([code,name])=>`<option value="${code}">${name}</option>`).join("");}
+["countryInput","newsCountry","authCountry"].forEach(fillCountries);
+function say(s){$("toast").textContent=s;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),3200)}
+function cname(code){return countries.find(c=>c[0]===code)?.[1]||"Pakistan"}
+window.go=page=>{
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ $("page-"+page)?.classList.add("active");
+ document.querySelectorAll(".nav[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ if(page==="news")loadNews();
+ if(page==="sports")loadSports();
+ if(page==="shorts")setTimeout(playVisibleShorts,150);
+};
+window.openAuth=()=>$("authModal").classList.remove("hidden");
+window.closeAuth=()=>$("authModal").classList.add("hidden");
+window.toggleAuth=e=>{e.preventDefault();mode=mode==="signup"?"login":"signup";$("authHeading").textContent=mode==="signup"?"Join ORVEX":"Login to ORVEX";$("authSubmit").textContent=mode==="signup"?"Create account":"Login";$("authName").classList.toggle("hidden",mode==="login");$("authCountryLabel").classList.toggle("hidden",mode==="login");$("authError").textContent=""};
+window.googleLogin=async()=>{
+ try{const c=await signInWithPopup(auth,new GoogleAuthProvider());const r=await getDoc(doc(db,"users",c.user.uid));if(!r.exists())await setDoc(doc(db,"users",c.user.uid),{displayName:c.user.displayName||"ORVEX Creator",avatar:c.user.photoURL||"",country:$("authCountry").value,bio:""});closeAuth();say("Welcome to ORVEX")}catch(e){$("authError").textContent=e.message}
+};
+$("authForm").addEventListener("submit",async e=>{
+ e.preventDefault();$("authError").textContent="Please wait…";
+ try{
+  const email=$("authEmail").value.trim(),password=$("authPassword").value;
+  if(mode==="signup"){
+   const c=await createUserWithEmailAndPassword(auth,email,password);
+   const name=$("authName").value.trim()||email.split("@")[0];
+   await updateAuthProfile(c.user,{displayName:name});
+   await setDoc(doc(db,"users",c.user.uid),{displayName:name,avatar:"",bio:"",country:$("authCountry").value,createdAt:serverTimestamp()});
+  }else await signInWithEmailAndPassword(auth,email,password);
+  closeAuth();say("Signed in successfully");
+ }catch(e){$("authError").textContent=e.message}
+});
+window.logout=async()=>{try{await signOut(auth);say("Logged out")}catch(e){say(e.message)}};
 
-  onAuthStateChanged(auth, async user => {
-    currentUser = user;
-    $("user-status").textContent = user ? user.email : "Guest mode";
-    $("profile-email").textContent = user ? user.email : "Guest account";
-    $("profile-name").textContent = user?.displayName || "ORVEX Member";
-    $("profile-avatar").textContent =
-      (user?.displayName || user?.email || "O").charAt(0).toUpperCase();
-
-    if (!user) return;
-    try {
-      const snap = await getDoc(doc(db, "users", user.uid));
-      if (snap.exists()) {
-        const data = snap.data();
-        $("display-name").value = data.displayName || user.displayName || "";
-        $("bio").value = data.bio || "";
-        $("profile-name").textContent = data.displayName || user.displayName || "ORVEX Member";
-      } else {
-        $("display-name").value = user.displayName || "";
-      }
-    } catch (e) {
-      say("profile-status", "Profile load nahi hua. Firestore rules check karein.");
-    }
-  });
-} catch (e) {
-  console.error("Firebase initialization error:", e);
-  say("auth-status", "Firebase setup check karein aur browser console dekhein.");
+function render(){
+ $("feed").innerHTML=posts.length?posts.map(p=>`<article class="post"><div class="posthead"><img class="avatar" src="${esc(p.avatar||placeholder)}" alt=""><div><b>${esc(p.displayName||"ORVEX Creator")}</b><div class="small">${esc(cname(p.country))}</div></div></div>${p.caption?`<div class="caption">${esc(p.caption)}</div>`:""}${p.mediaType?.startsWith("video/")?`<video class="media" controls playsinline preload="metadata" src="${esc(p.mediaUrl)}"></video>`:`<img class="media" loading="lazy" src="${esc(p.mediaUrl)}" alt="Post">`}<div class="row" style="margin-top:10px"><span class="small">${p.isShort?"▶ Short":"◉ Post"}</span><button onclick="share('${esc(p.id)}')">↗ Share</button></div></article>`).join(""):'<div class="panel">No posts yet. Create the first ORVEX post!</div>';
+ const mine=posts.filter(p=>user&&p.uid===user.uid);
+ $("myPosts").innerHTML=mine.map(p=>p.mediaType?.startsWith("video/")?`<video src="${esc(p.mediaUrl)}" controls></video>`:`<img src="${esc(p.mediaUrl)}" alt="My post">`).join("");
+ renderShorts();
 }
-
-window.showPage = function(page) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  const target = $("page-" + page);
-  if (!target) return;
-  target.classList.add("active");
-  document.querySelectorAll("[data-page]").forEach(b =>
-    b.classList.toggle("active", b.dataset.page === page)
-  );
-  window.scrollTo({top:0,behavior:"smooth"});
-};
-
-window.setTheme = function(theme) {
-  document.body.classList.toggle("light", theme === "light");
-  try { localStorage.setItem("orvex-theme", theme); } catch {}
-};
-try {
-  if (localStorage.getItem("orvex-theme") === "light") document.body.classList.add("light");
-} catch {}
-
-function friendlyError(e) {
-  const errors = {
-    "auth/email-already-in-use":"Yeh email pehle se registered hai.",
-    "auth/invalid-email":"Valid email enter karein.",
-    "auth/weak-password":"Password kam az kam 6 characters ka hona chahiye.",
-    "auth/invalid-credential":"Email ya password ghalat hai.",
-    "auth/unauthorized-domain":"Firebase Authentication mein website domain add karein.",
-    "storage/unauthorized":"Storage rules upload ki permission nahi de rahe."
-  };
-  return errors[e?.code] || e?.message || "Error hua. Dobara try karein.";
+function renderShorts(){
+ const shorts=posts.filter(p=>p.isShort&&p.mediaType?.startsWith("video/"));
+ $("shortsList").innerHTML=shorts.length?shorts.map(p=>`<article class="short"><video src="${esc(p.mediaUrl)}" playsinline muted loop controls preload="metadata"></video><div class="shortinfo"><b>${esc(p.displayName||"ORVEX Creator")}</b><p>${esc(p.caption||"")}</p><span class="small">${esc(cname(p.country))}</span></div><div class="shortbuttons"><button onclick="togglePlay(this)">▶</button><button onclick="share('${esc(p.id)}')">↗</button></div></article>`).join(""):'<div class="panel">No Shorts yet. Go to Create, upload a video and tick “Publish as Short”.</div>';
 }
-
-window.signUp = async function() {
-  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
-  const email=$("auth-email").value.trim(), password=$("auth-password").value;
-  if (!email || password.length<6) return say("auth-status","Valid email aur 6+ character password enter karein.");
-  try {
-    await createUserWithEmailAndPassword(auth,email,password);
-    say("auth-status","Account create ho gaya.");
-  } catch(e) { say("auth-status",friendlyError(e)); }
-};
-
-window.signIn = async function() {
-  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
-  const email=$("auth-email").value.trim(), password=$("auth-password").value;
-  if (!email || !password) return say("auth-status","Email aur password enter karein.");
-  try {
-    await signInWithEmailAndPassword(auth,email,password);
-    say("auth-status","Login successful.");
-  } catch(e) { say("auth-status",friendlyError(e)); }
-};
-
-window.signInGoogle = async function() {
-  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
-  try {
-    await signInWithPopup(auth,new GoogleAuthProvider());
-    say("auth-status","Google login successful.");
-  } catch(e) { say("auth-status",friendlyError(e)); }
-};
-
-window.signOutUser = async function() {
-  if (!auth) return;
-  try {
-    await signOut(auth);
-    say("auth-status","Sign out successful.");
-  } catch(e) { say("auth-status",friendlyError(e)); }
-};
-
-window.saveProfile = async function() {
-  if (!currentUser || !db) return say("profile-status","Pehle login karein.");
-  const displayName=$("display-name").value.trim().slice(0,50);
-  const bio=$("bio").value.trim().slice(0,160);
-  try {
-    await setDoc(doc(db,"users",currentUser.uid),{
-      displayName,bio,updatedAt:serverTimestamp()
-    },{merge:true});
-    $("profile-name").textContent=displayName || "ORVEX Member";
-    $("profile-avatar").textContent=(displayName || currentUser.email || "O").charAt(0).toUpperCase();
-    say("profile-status","Profile save ho gaya.");
-  } catch(e) { say("profile-status",friendlyError(e)); }
-};
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[c]);
+window.togglePlay=b=>{const v=b.closest(".short").querySelector("video");if(v.paused){v.play().catch(()=>{});b.textContent="Ⅱ"}else{v.pause();b.textContent="▶"}};
+function playVisibleShorts(){
+ const root=$("shortsList");if(!root)return;
+ const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting&&$("page-shorts").classList.contains("active"))e.target.play().catch(()=>{});else e.target.pause()}),{root,threshold:.65});
+ root.querySelectorAll("video").forEach(v=>observer.observe(v));
 }
-
-const posts = [
-  {name:"ORVEX Team",text:"Welcome to ORVEX — connect, discover and create. 🌐"},
-  {name:"Creator Community",text:"Share your ideas and build meaningful connections."}
-];
-
-function renderPosts() {
-  $("feed").replaceChildren();
-  [...posts].reverse().forEach(post => {
-    const article=document.createElement("article");
-    article.className="card";
-    article.innerHTML=`<div class="row"><div class="avatar">${escapeHTML(post.name.charAt(0))}</div><strong>${escapeHTML(post.name)}</strong></div>
-    <p class="post-text">${escapeHTML(post.text)}</p>
-    <div class="actions"><button class="action" data-like>♡ Like <span>0</span></button><button class="action" data-share>↗ Share</button></div>`;
-    article.querySelector("[data-like]").addEventListener("click",e=>{
-      const count=e.currentTarget.querySelector("span");
-      count.textContent=String(Number(count.textContent)+1);
-    });
-    article.querySelector("[data-share]").addEventListener("click",async()=>{
-      try {
-        if(navigator.share) await navigator.share({title:"ORVEX",text:post.text});
-        else if(navigator.clipboard) {
-          await navigator.clipboard.writeText(post.text);
-          e.currentTarget.textContent="✓ Copied";
-        } else window.prompt("Copy post:",post.text);
-      } catch(error) {
-        if(error.name!=="AbortError") console.error(error);
-      }
-    });
-    $("feed").appendChild(article);
-  });
-}
-
-window.createPost = function() {
-  const text=$("post-text").value.trim();
-  if(!text) return alert("Pehle post likhein.");
-  posts.push({
-    name:currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest Creator",
-    text
-  });
-  $("post-text").value="";
-  renderPosts();
+window.share=async id=>{
+ const p=posts.find(p=>p.id===id);if(!p)return;
+ try{if(navigator.share)await navigator.share({title:"ORVEX",text:p.caption||"ORVEX video",url:p.mediaUrl});else{await navigator.clipboard.writeText(p.mediaUrl);say("Media link copied")}}catch(e){if(e.name!=="AbortError")say("Could not share this link")}
 };
 
-function previewFile(file,container,type) {
-  if(!file) return;
-  const isImage=type==="image";
-  if(isImage && !file.type.startsWith("image/")) return alert("Image file select karein.");
-  if(!isImage && !file.type.startsWith("video/")) return alert("Video file select karein.");
-  const limit=isImage?5:100;
-  if(file.size>limit*1024*1024) return alert(`File ${limit} MB se chhoti honi chahiye.`);
-  const old=container.dataset.url;
-  if(old) URL.revokeObjectURL(old);
-  const url=URL.createObjectURL(file);
-  container.dataset.url=url;
-  const el=document.createElement(isImage?"img":"video");
-  el.src=url; el.alt=isImage?"Image preview":"";
-  if(!isImage) { el.controls=true; el.playsInline=true; }
-  container.replaceChildren(el);
-}
-
-$("image-file").addEventListener("change",e=>{
-  selectedImage=e.target.files?.[0] || null;
-  previewFile(selectedImage,$("image-preview"),"image");
+onAuthStateChanged(auth,async u=>{
+ user=u;profile={};
+ if(unsubscribe){unsubscribe();unsubscribe=null}
+ if(u){
+  try{const s=await getDoc(doc(db,"users",u.uid));if(s.exists())profile=s.data()}catch(e){console.error(e)}
+  if(!profile.country)profile.country="PK";
+  unsubscribe=onSnapshot(query(collection(db,"posts"),orderBy("createdAt","desc"),limit(100)),s=>{posts=s.docs.map(d=>({id:d.id,...d.data()}));render()},e=>{$("feed").innerHTML='<div class="panel">Could not load posts. Check Firestore rules.</div>';console.error(e)});
+ }else{posts=[];render()}
+ $("loginBtn").classList.toggle("hidden",!!u);
+ $("headerAvatar").classList.toggle("hidden",!u);
+ $("headerAvatar").src=profile.avatar||u?.photoURL||placeholder;
+ $("profileAvatar").src=profile.avatar||u?.photoURL||placeholder;
+ $("profileName").textContent=profile.displayName||u?.displayName||"ORVEX Creator";
+ $("profileEmail").textContent=u?.email||"Please log in";
+ $("bioDisplay").textContent=profile.bio||"Welcome to my ORVEX profile.";
+ $("profileCountryText").textContent=profile.country?"🌍 "+cname(profile.country):"";
+ $("nameInput").value=profile.displayName||u?.displayName||"";
+ $("bioInput").value=profile.bio||"";
+ $("countryInput").value=profile.country||"PK";
+ $("newsCountry").value=profile.country||"PK";
 });
 
-$("story-file").addEventListener("change",e=>{
-  const file=e.target.files?.[0];
-  if(file) previewFile(file,$("story-preview"),file.type.startsWith("image/")?"image":"video");
-});
-
-$("video-file").addEventListener("change",e=>{
-  selectedVideo=e.target.files?.[0] || null;
-  if(selectedVideo) {
-    previewFile(selectedVideo,$("video-preview"),"video");
-    say("upload-status","Video preview ready. Upload ke liye login aur Storage setup zaroori hai.");
-  } else {
-    $("video-preview").textContent="Select a video to preview it here.";
-    say("upload-status","");
+$("profileForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!user){openAuth();return}
+ const btn=$("saveProfile");btn.disabled=true;btn.textContent="Saving…";
+ try{
+  let avatar=profile.avatar||user.photoURL||"",f=$("avatarInput").files[0];
+  if(f){
+   if(!f.type.startsWith("image/"))throw Error("Choose an image for your DP.");
+   if(f.size>5*1024*1024)throw Error("DP must be 5 MB or smaller.");
+   const task=uploadBytesResumable(ref(storage,`avatars/${user.uid}/${Date.now()}_${f.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`),f);
+   await new Promise((ok,no)=>task.on("state_changed",null,no,ok));
+   avatar=await getDownloadURL(task.snapshot.ref);
   }
+  profile={displayName:$("nameInput").value.trim()||"ORVEX Creator",bio:$("bioInput").value.trim(),country:$("countryInput").value,avatar};
+  await setDoc(doc(db,"users",user.uid),{...profile,updatedAt:serverTimestamp()},{merge:true});
+  await updateAuthProfile(user,{displayName:profile.displayName,photoURL:avatar||null});
+  $("profileName").textContent=profile.displayName;$("profileAvatar").src=avatar||placeholder;$("headerAvatar").src=avatar||placeholder;$("bioDisplay").textContent=profile.bio;$("profileCountryText").textContent="🌍 "+cname(profile.country);$("newsCountry").value=profile.country;
+  $("avatarInput").value="";say("Profile saved");
+ }catch(e){say(e.message||"Profile could not be saved")}
+ finally{btn.disabled=false;btn.textContent="Save profile"}
 });
 
-window.uploadVideo = async function() {
-  if(!currentUser) return say("upload-status","Video upload ke liye pehle login karein.");
-  if(!selectedVideo) return say("upload-status","Pehle video select karein.");
-  if(!storage) return say("upload-status","Firebase Storage initialize nahi hua.");
-  if(!selectedVideo.type.startsWith("video/")) return say("upload-status","Valid video file select karein.");
-  if(selectedVideo.size>100*1024*1024) return say("upload-status","Video 100 MB se chhoti honi chahiye.");
+$("postForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!user){openAuth();return}
+ const f=$("mediaFile").files[0];if(!f)return;
+ if(!f.type.startsWith("image/")&&!f.type.startsWith("video/"))return say("Choose a photo or video.");
+ if(f.size>100*1024*1024)return say("Maximum file size is 100 MB.");
+ if($("isShort").checked&&!f.type.startsWith("video/"))return say("Shorts must be videos.");
+ const btn=$("publish");btn.disabled=true;
+ try{
+  const path=`posts/${user.uid}/${Date.now()}_${f.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
+  const task=uploadBytesResumable(ref(storage,path),f);
+  await new Promise((ok,no)=>task.on("state_changed",s=>btn.textContent="Uploading "+Math.round(s.bytesTransferred/s.totalBytes*100)+"%",no,ok));
+  const mediaUrl=await getDownloadURL(task.snapshot.ref);
+  await addDoc(collection(db,"posts"),{uid:user.uid,displayName:profile.displayName||user.displayName||"ORVEX Creator",avatar:profile.avatar||user.photoURL||"",country:profile.country||"PK",caption:$("caption").value.trim(),mediaUrl,mediaType:f.type,isShort:$("isShort").checked,createdAt:serverTimestamp()});
+  $("caption").value="";$("mediaFile").value="";$("isShort").checked=false;say("Published successfully");go("home");
+ }catch(e){console.error(e);say(e.message||"Upload failed. Check Storage rules.")}
+ finally{btn.disabled=false;btn.textContent="Publish"}
+});
 
-  const name=selectedVideo.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-  const fileRef=ref(storage,`videos/${currentUser.uid}/${Date.now()}_${name}`);
-  const task=uploadBytesResumable(fileRef,selectedVideo,{contentType:selectedVideo.type});
-
-  task.on("state_changed",
-    snapshot=>{
-      const percent=Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100);
-      say("upload-status",`Upload progress: ${percent}%`);
-    },
-    error=>say("upload-status",friendlyError(error)),
-    async()=>{
-      try {
-        const url=await getDownloadURL(task.snapshot.ref);
-        say("upload-status","Upload successful. Video URL: "+url);
-      } catch(e) { say("upload-status",friendlyError(e)); }
-    }
-  );
+window.loadNews=async()=>{
+ const code=$("newsCountry").value||"PK",out=$("newsResults");out.textContent="Loading news…";
+ try{
+  const url="https://api.gdeltproject.org/api/v2/doc/doc?query="+encodeURIComponent("sourceCountry:"+code)+"&mode=ArtList&format=json&sort=DateDesc&maxrecords=20";
+  const r=await fetch(url);if(!r.ok)throw Error("News service unavailable");
+  const data=await r.json(),articles=(data.articles||[]).filter(a=>a.url&&a.title);
+  if(!articles.length)throw Error("No news available for this country at the moment.");
+  out.innerHTML=articles.map(a=>`<div class="item"><a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(a.title)}</b></a><div class="small">${esc(a.domain||"News source")} · ${esc(a.seendate||"Latest")}</div></div>`).join("");
+ }catch(e){out.innerHTML=`<p>Country news could not load right now.</p><p class="small">${esc(e.message)}</p><a href="https://news.google.com/" target="_blank" rel="noopener">Open Google News</a>`}
 };
 
-window.translateText = function() {
-  const text=$("source-text").value.trim();
-  if(!text) return alert("Pehle text enter karein.");
-  const lang=$("target-language").value;
-  const url="https://translate.google.com/?sl=auto&tl="+encodeURIComponent(lang)+"&text="+encodeURIComponent(text)+"&op=translate";
-  window.open(url,"_blank","noopener,noreferrer");
+const endpoints={
+ soccer:"https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+ cricket:"https://site.api.espn.com/apis/site/v2/sports/cricket/icc/scoreboard",
+ basketball:"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+ tennis:"https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard",
+ americanfootball:"https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+ baseball:"https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+ hockey:"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
+};
+window.loadSports=async()=>{
+ const out=$("scoreResults");out.textContent="Loading scores…";
+ try{
+  const r=await fetch(endpoints[$("sport").value]);if(!r.ok)throw Error("Score provider unavailable");
+  const data=await r.json(),events=data.events||[];
+  if(!events.length)throw Error("No matches returned right now.");
+  out.innerHTML=events.map(ev=>{
+   const comp=ev.competitions?.[0],teams=comp?.competitors||[];
+   const rows=teams.map(t=>`<div class="row between" style="margin:9px 0"><span>${esc(t.team?.displayName||t.team?.name||"Team")}</span><b style="font-size:20px">${esc(t.score||"—")}</b></div>`).join("");
+   return `<div class="item"><div class="row between"><b>${esc(ev.name||"Match")}</b><span class="badge">${esc(ev.status?.type?.shortDetail||"Scheduled")}</span></div>${rows}<div class="small">${esc(ev.date||"")}</div></div>`;
+  }).join("");
+ }catch(e){out.innerHTML=`<p>Scores unavailable right now.</p><p class="small">${esc(e.message)}</p><a href="https://www.espn.com/" target="_blank" rel="noopener">Open ESPN</a>`}
 };
 
-window.playStream = function() {
-  const url=$("stream-url").value.trim();
-  if(!/^https:\/\//i.test(url)) return say("stream-status","Valid HTTPS stream URL enter karein.");
-  const player=$("stream-player");
-  player.src=url; player.load();
-  player.play().catch(()=>say("stream-status","Stream load ho gayi. Play dabayein; har format browser mein nahi chalta."));
-};
-
-window.stopStream = function() {
-  const player=$("stream-player");
-  player.pause(); player.removeAttribute("src"); player.load();
-  say("stream-status","Playback stopped.");
-};
-
-renderPosts();
+try{
+ const app=initializeApp(firebaseConfig);
+ auth=getAuth(app);db=getFirestore(app);storage=getStorage(app);
+}catch(e){
+ console.error(e);
+ $("feed").innerHTML='<div class="panel">Firebase could not start. Verify the Firebase configuration.</div>';
+ $("loginBtn").disabled=true;
+}
 </script>
 </body>
 </html>
