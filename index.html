@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
+  <title>ORVEX — Made in Mian Abdullah</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #080808;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .header {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 18px 5%;
+      border-bottom: 1px solid #292929;
+      position: sticky; top: 0; background: #080808;
+    }
+    .logo { font-size: 28px; font-weight: 900; letter-spacing: 3px; }
+    .logo span { color: #aaa; }
+    .tagline { font-size: 10px; color: #aaa; margin-top: 5px; }
+    .layout {
+      max-width: 1100px; margin: auto; padding: 28px 18px;
+      display: grid; grid-template-columns: 1fr 320px; gap: 24px;
+    }
+    .card {
+      border: 1px solid #292929; border-radius: 18px;
+      background: #111; padding: 22px; margin-bottom: 18px;
+    }
+    h2 { margin-top: 0; }
+    input {
+      display: block; width: 100%; padding: 13px;
+      border: 1px solid #383838; border-radius: 10px;
+      background: #090909; color: white; margin: 10px 0;
+    }
+    .btn {
+      width: 100%; border: 0; border-radius: 10px;
+      padding: 13px; background: white; color: black;
+      font-weight: bold; margin-top: 9px;
+    }
+    .google { background: #222; color: white; border: 1px solid #444; }
+    .muted { color: #aaa; font-size: 13px; line-height: 1.6; }
+    .hidden { display: none !important; }
+    .pill {
+      display: inline-block; padding: 7px 12px; border-radius: 30px;
+      background: #222; color: white; font-size: 12px;
+    }
+    .feed-post {
+      padding: 18px; border: 1px solid #292929;
+      border-radius: 16px; margin-top: 14px; background: #101010;
+    }
+    .feed-post p { color: #ddd; line-height: 1.6; }
+    .status { color: #ddd; font-size: 13px; min-height: 20px; }
+    .footer { text-align: center; padding: 25px; color: #777; font-size: 12px; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      .header { padding: 15px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div>
+      <div class="logo">ORV<span>EX</span></div>
+      <div class="tagline">MADE IN MIAN ABDULLAH</div>
+    </div>
+    <span class="pill">SOCIAL • GLOBAL</span>
+  </header>
+
+  <main class="layout">
+    <section>
+      <div class="card">
+        <span class="pill">WELCOME TO ORVEX</span>
+        <h1>One world. One community.</h1>
+        <p class="muted">
+          Connect with people, share your ideas and discover a global community.
+          More features can be added as the app develops.
+        </p>
+      </div>
+
+      <div id="feed" class="card hidden">
+        <h2>Your ORVEX feed</h2>
+        <p class="muted">You are signed in. This is the starter feed.</p>
+        <div class="feed-post">
+          <strong>ORVEX Community</strong>
+          <p>Welcome! Your social journey starts here.</p>
+          <span class="pill">Community</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>About ORVEX</h2>
+        <p class="muted">
+          A social platform concept built with Firebase Authentication.
+          Real posts, photo/video uploads, messaging and translation require
+          additional database, storage and application logic.
+        </p>
+      </div>
+    </section>
+
+    <aside>
+      <div id="authPanel" class="card">
+        <h2>Join ORVEX</h2>
+        <p class="muted">Sign in or create your account.</p>
+
+        <button id="googleBtn" class="btn google">
+          Continue with Google
+        </button>
+
+        <div style="text-align:center;margin:18px;color:#777">OR EMAIL</div>
+
+        <form id="authForm">
+          <input id="email" type="email" placeholder="Email address" required />
+          <input id="password" type="password"
+                 placeholder="Password (at least 6 characters)"
+                 minlength="6" required />
+          <button class="btn" type="submit">Sign in</button>
+        </form>
+
+        <button id="signupBtn" class="btn google">Create account</button>
+        <p id="message" class="status" role="status"></p>
+      </div>
+
+      <div id="userPanel" class="card hidden">
+        <h2>Your account</h2>
+        <p class="muted">Signed in as:</p>
+        <p id="userEmail" style="overflow-wrap:anywhere"></p>
+        <button id="logoutBtn" class="btn">Sign out</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">ORVEX © 2026 · MADE IN MIAN ABDULLAH</footer>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Your Firebase web app configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDVbbGc1hTR06M4JJdQxBOm_8cxMsLOrZo",
+      authDomain: "orvex-a1a07.firebaseapp.com",
+      projectId: "orvex-a1a07",
+      storageBucket: "orvex-a1a07.firebasestorage.app",
+      messagingSenderId: "165210370215",
+      appId: "1:165210370215:web:ebfbd56df53c36b1a36b82",
+      measurementId: "G-VRQE59184T"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    const $ = (id) => document.getElementById(id);
+    let mode = "login";
+
+    function showMessage(text) {
+      $("message").textContent = text;
+    }
+
+    function explainError(error) {
+      const messages = {
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/invalid-credential": "Email or password is incorrect.",
+        "auth/email-already-in-use": "This email already has an account. Sign in instead.",
+        "auth/weak-password": "Choose a stronger password with at least 6 characters.",
+        "auth/popup-closed-by-user": "Google sign-in was cancelled.",
+        "auth/unauthorized-domain": "Add this website domain in Firebase Authentication settings.",
+        "auth/network-request-failed": "Network error. Check your internet connection."
+      };
+      showMessage(messages[error.code] || error.message || "Something went wrong.");
+    }
+
+    $("authForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      showMessage("Please wait...");
+
+      const email = $("email").value.trim();
+      const password = $("password").value;
+
+      try {
+        if (mode === "signup") {
+          await createUserWithEmailAndPassword(auth, email, password);
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
+        showMessage("Success!");
+      } catch (error) {
+        explainError(error);
+      }
+    });
+
+    $("signupBtn").addEventListener("click", () => {
+      mode = mode === "login" ? "signup" : "login";
+      $("authForm").querySelector("button[type=submit]").textContent =
+        mode === "signup" ? "Create account" : "Sign in";
+      $("signupBtn").textContent =
+        mode === "signup" ? "Back to sign in" : "Create account";
+      showMessage(mode === "signup"
+        ? "Enter your email and choose a password."
+        : "");
+    });
+
+    $("googleBtn").addEventListener("click", async () => {
+      showMessage("Opening Google sign-in...");
+      try {
+        await signInWithPopup(auth, googleProvider);
+        showMessage("Google sign-in successful!");
+      } catch (error) {
+        explainError(error);
+      }
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        showMessage("You have signed out.");
+      } catch (error) {
+        explainError(error);
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      $("authPanel").classList.toggle("hidden", !!user);
+      $("userPanel").classList.toggle("hidden", !user);
+      $("feed").classList.toggle("hidden", !user);
+
+      if (user) {
+        $("userEmail").textContent = user.displayName || user.email || "ORVEX user";
+      }
+    });
+  </script>
+</body>
+</html>
