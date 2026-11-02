@@ -2,824 +2,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080808">
-  <meta name="description" content="ORVEX — Connect with the world. MADE IN MIAN ABDULLAH.">
-  <title>ORVEX — MADE IN MIAN ABDULLAH</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="ORVEX — Connect, discover and create. Made in Mian Abdullah.">
+<title>ORVEX — MADE IN MIAN ABDULLAH</title>
 
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #080808;
-      --panel: #121212;
-      --panel2: #191919;
-      --text: #f7f7f7;
-      --muted: #a0a0a0;
-      --border: #292929;
-      --white: #fff;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-    }
-
-    button, input, textarea { font: inherit; }
-    button { cursor: pointer; }
-
-    a { color: inherit; text-decoration: none; }
-
-    .topbar {
-      height: 72px;
-      padding: 0 5%;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(8,8,8,.94);
-      backdrop-filter: blur(14px);
-    }
-
-    .brand {
-      font-size: 27px;
-      font-weight: 950;
-      letter-spacing: 4px;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: 2px;
-      margin-top: 4px;
-    }
-
-    .top-actions { display: flex; gap: 10px; align-items: center; }
-
-    .btn {
-      border: 1px solid var(--border);
-      background: var(--panel2);
-      color: white;
-      border-radius: 11px;
-      padding: 11px 16px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .btn:hover { border-color: white; transform: translateY(-1px); }
-
-    .btn.primary { background: white; color: black; border-color: white; }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 225px minmax(0, 1fr) 270px;
-      gap: 24px;
-      max-width: 1500px;
-      margin: auto;
-      padding: 24px 3%;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 96px;
-      height: fit-content;
-    }
-
-    .nav-btn {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: #ddd;
-      padding: 14px;
-      text-align: left;
-      border-radius: 12px;
-      margin-bottom: 5px;
-      font-weight: 650;
-    }
-
-    .nav-btn:hover, .nav-btn.active {
-      background: var(--panel2);
-      border-color: var(--border);
-      color: white;
-    }
-
-    .nav-icon { width: 24px; text-align: center; font-size: 19px; }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-
-    .hero {
-      min-height: 255px;
-      display: flex;
-      align-items: center;
-      padding: clamp(24px, 5vw, 52px);
-      background:
-        radial-gradient(ellipse at 80% 20%, #333 0%, transparent 35%),
-        linear-gradient(135deg, #191919, #080808 70%);
-      overflow: hidden;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 68px);
-      letter-spacing: -2px;
-      line-height: 1;
-      margin: 12px 0;
-    }
-
-    .hero p { color: #c0c0c0; max-width: 490px; line-height: 1.7; }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: #bbb;
-      font-weight: 800;
-    }
-
-    .section-title {
-      font-size: 22px;
-      margin: 8px 0 18px;
-      letter-spacing: -.5px;
-    }
-
-    .stories {
-      display: flex;
-      gap: 13px;
-      overflow-x: auto;
-      padding: 4px 0 14px;
-    }
-
-    .story {
-      flex: 0 0 72px;
-      text-align: center;
-      color: #ddd;
-      font-size: 12px;
-    }
-
-    .story-ring {
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      padding: 3px;
-      margin: 0 auto 7px;
-      background: linear-gradient(135deg, white, #555, #ddd);
-    }
-
-    .story-ring span {
-      height: 100%;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #171717;
-      font-size: 22px;
-    }
-
-    .composer textarea, .field {
-      width: 100%;
-      background: #090909;
-      color: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      outline: none;
-    }
-
-    .composer textarea { resize: vertical; min-height: 85px; }
-    .field:focus, .composer textarea:focus { border-color: #aaa; }
-
-    .post-head { display: flex; align-items: center; gap: 12px; }
-
-    .avatar {
-      height: 42px;
-      width: 42px;
-      flex: 0 0 42px;
-      border-radius: 50%;
-      background: #eee;
-      color: #111;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-    }
-
-    .muted { color: var(--muted); font-size: 13px; }
-
-    .post-content { line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
-
-    .post-actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
-
-    .action {
-      background: #1b1b1b;
-      color: #eee;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 9px 12px;
-    }
-
-    .action:hover { background: #292929; }
-
-    .media-placeholder {
-      min-height: 180px;
-      margin-top: 14px;
-      border: 1px solid #333;
-      border-radius: 14px;
-      background: radial-gradient(ellipse at center, #303030, #111 70%);
-      display: grid;
-      place-items: center;
-      color: #ccc;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .right-title { font-size: 15px; margin: 0 0 14px; }
-
-    .trend {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .trend:last-child { border: 0; }
-
-    .trend strong { display: block; margin-bottom: 5px; }
-
-    .page { display: none; }
-    .page.active { display: block; }
-
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .feature-card {
-      min-height: 155px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      background: linear-gradient(145deg, #1d1d1d, #101010);
-    }
-
-    .feature-card .big { font-size: 29px; margin-bottom: 16px; }
-    .feature-card h3 { margin: 0 0 8px; }
-    .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
-
-    .notice {
-      border: 1px solid #3b3b3b;
-      background: #151515;
-      padding: 13px;
-      border-radius: 12px;
-      line-height: 1.6;
-      color: #ddd;
-      font-size: 13px;
-    }
-
-    .auth-wrap {
-      max-width: 460px;
-      margin: 35px auto;
-    }
-
-    .auth-wrap .field { margin: 7px 0 13px; }
-
-    .footer {
-      text-align: center;
-      border-top: 1px solid var(--border);
-      padding: 24px 12px;
-      color: #999;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .mobile-nav { display: none; }
-
-    @media (max-width: 1050px) {
-      .layout { grid-template-columns: 190px minmax(0, 1fr); }
-      .rightbar { display: none; }
-    }
-
-    @media (max-width: 700px) {
-      .topbar { height: 64px; padding: 0 15px; }
-      .brand { font-size: 22px; }
-      .top-actions .btn { padding: 9px 11px; font-size: 12px; }
-      .layout { display: block; padding: 16px 12px 90px; }
-      .sidebar { display: none; }
-      .hero { min-height: 230px; padding: 24px; }
-      .hero h1 { font-size: 43px; }
-      .grid-cards { grid-template-columns: 1fr; }
-      .mobile-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 20;
-        background: #0c0c0c;
-        border-top: 1px solid var(--border);
-        justify-content: space-around;
-        padding: 9px 3px calc(9px + env(safe-area-inset-bottom));
-      }
-      .mobile-nav button {
-        background: transparent;
-        border: 0;
-        color: #ccc;
-        padding: 7px 5px;
-        font-size: 11px;
-      }
-      .mobile-nav button span { display: block; font-size: 19px; margin-bottom: 3px; }
-    }
-  </style>
+<style>
+:root {
+  --bg:#080808; --panel:#121212; --panel2:#1b1b1b;
+  --text:#f7f7f7; --muted:#a5a5a5; --line:#292929;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  transition:background .2s,color .2s;
+}
+body.light {
+  --bg:#f5f5f5; --panel:#fff; --panel2:#ededed;
+  --text:#111; --muted:#626262; --line:#ddd;
+}
+button,input,textarea,select { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
+  outline:2px solid #999; outline-offset:3px;
+}
+.topbar {
+  height:72px; position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 4%; background:var(--bg); border-bottom:1px solid var(--line);
+}
+.brand { color:var(--text); text-decoration:none; font-size:27px; font-weight:950; letter-spacing:4px; }
+.brand small { display:block; margin-top:4px; font-size:9px; letter-spacing:2px; color:var(--muted); }
+.top-actions { display:flex; align-items:center; gap:12px; }
+.layout {
+  max-width:1500px; margin:auto; padding:24px 3%;
+  display:grid; grid-template-columns:220px minmax(0,1fr) 245px; gap:22px;
+}
+.sidebar { position:sticky; top:95px; height:fit-content; }
+.nav-btn {
+  display:flex; align-items:center; gap:13px; width:100%;
+  margin-bottom:5px; padding:13px; text-align:left;
+  border:1px solid transparent; border-radius:13px;
+  background:transparent; color:var(--text); font-weight:650;
+}
+.nav-btn:hover,.nav-btn.active { background:var(--panel2); border-color:var(--line); }
+.icon { display:inline-grid; place-items:center; width:25px; height:25px; flex-shrink:0; }
+.icon svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:19px; padding:20px; margin-bottom:18px; }
+.btn {
+  background:var(--panel2); color:var(--text); border:1px solid var(--line);
+  padding:11px 15px; border-radius:11px; font-weight:700;
+}
+.btn.primary { background:var(--text); color:var(--bg); border-color:var(--text); }
+.btn:hover,.action:hover { opacity:.82; }
+.hero {
+  min-height:245px; padding:clamp(24px,5vw,48px);
+  display:flex; align-items:center;
+  background:radial-gradient(ellipse at 80% 15%,#41414155,transparent 40%),
+  linear-gradient(135deg,var(--panel2),var(--panel));
+}
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; color:var(--muted); }
+.hero h1 { font-size:clamp(40px,6vw,67px); line-height:1; letter-spacing:-2px; margin:14px 0; }
+.hero p { color:var(--muted); max-width:480px; line-height:1.7; }
+.title { margin:8px 0 17px; font-size:21px; }
+.page { display:none; }
+.page.active { display:block; }
+.field,textarea,select {
+  display:block; width:100%; padding:13px 14px; margin:8px 0 14px;
+  color:var(--text); background:var(--bg); border:1px solid var(--line); border-radius:12px;
+}
+textarea { resize:vertical; min-height:85px; }
+.muted,.status { color:var(--muted); font-size:13px; line-height:1.6; }
+.status { overflow-wrap:anywhere; }
+.row { display:flex; align-items:center; gap:12px; }
+.avatar {
+  width:43px; height:43px; flex-shrink:0; border-radius:50%;
+  background:var(--text); color:var(--bg); display:grid; place-items:center; font-weight:900;
+}
+.story-list { display:flex; gap:14px; overflow-x:auto; padding:5px 0 12px; }
+.story { flex:0 0 70px; text-align:center; color:var(--muted); font-size:12px; }
+.story-add { border:0; padding:0; background:transparent; color:inherit; }
+.story-ring {
+  width:65px; height:65px; padding:3px; margin:0 auto 7px; border-radius:50%;
+  background:conic-gradient(#fff,#777,#eee,#555,#fff);
+}
+.story-inner {
+  width:100%; height:100%; border:3px solid var(--bg); border-radius:50%;
+  display:grid; place-items:center; overflow:hidden; background:var(--panel); font-size:23px;
+}
+.story-inner img,.story-inner video { width:100%; height:100%; object-fit:cover; }
+.actions { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-top:13px; }
+.action { padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:var(--panel2); color:var(--text); }
+.preview { margin-top:12px; }
+.preview img,.preview video { display:block; width:100%; max-height:430px; object-fit:contain; border-radius:13px; background:#000; }
+.post-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.8; }
+.notice { padding:13px; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:13px; line-height:1.7; }
+.feature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+.feature { padding:22px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(140deg,var(--panel2),var(--panel)); }
+.feature .emoji { font-size:30px; margin-bottom:14px; }
+.feature h3 { margin:0 0 8px; }
+.feature p { color:var(--muted); font-size:13px; line-height:1.6; }
+.right-card { padding:18px; background:var(--panel); border:1px solid var(--line); border-radius:17px; margin-bottom:16px; }
+.trend { padding:12px 0; border-bottom:1px solid var(--line); }
+.trend:last-child { border-bottom:0; }
+.mobile-nav { display:none; }
+.footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.9; }
+@media(max-width:1050px) {
+  .layout { grid-template-columns:185px minmax(0,1fr); }
+  .rightbar { display:none; }
+}
+@media(max-width:700px) {
+  .topbar { height:65px; padding:0 13px; }
+  .brand { font-size:22px; }
+  .top-actions .muted { display:none; }
+  .top-actions .btn { padding:9px 11px; font-size:12px; }
+  .layout { display:block; padding:14px 11px 90px; }
+  .sidebar { display:none; }
+  .hero { min-height:220px; padding:25px; }
+  .hero h1 { font-size:44px; }
+  .card { padding:16px; border-radius:16px; }
+  .feature-grid { grid-template-columns:1fr; }
+  .mobile-nav {
+    position:fixed; bottom:0; left:0; right:0; z-index:20;
+    display:flex; justify-content:space-around; padding:8px 2px calc(8px + env(safe-area-inset-bottom));
+    background:var(--bg); border-top:1px solid var(--line);
+  }
+  .mobile-nav button { border:0; background:transparent; color:var(--text); font-size:10px; padding:5px; }
+  .mobile-nav svg { display:block; width:22px; height:22px; margin:0 auto 4px; }
+}
+</style>
 </head>
 
 <body>
-  <header class="topbar">
-    <a href="#home" class="brand" onclick="showPage('home')">
-      ORVEX
-      <small>MADE IN MIAN ABDULLAH</small>
-    </a>
-    <div class="top-actions">
-      <span id="user-status" class="muted">Guest mode</span>
-      <button class="btn primary" onclick="showPage('account')">Sign in</button>
+
+<!-- High-resolution vector icons -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3z"/></symbol>
+  <symbol id="news" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></symbol>
+  <symbol id="sports" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 3 3 6-3 4-6-1-3 4m12-7 6-2m-9 5 5 4-2 5"/></symbol>
+  <symbol id="live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19 13 2 2-2 4-3-1-2 1-1 3H9l-1-3-2-1-3 1-2-4 2-2v-2L1 9l2-4 3 1 2-1 1-3h4l1 3 2 1 3-1 2 4-2 2z" transform="translate(1 1) scale(.92)"/></symbol>
+  <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+</svg>
+
+<header class="topbar">
+  <a class="brand" href="#" onclick="showPage('home');return false">ORVEX<small>MADE IN MIAN ABDULLAH</small></a>
+  <div class="top-actions"><span class="muted" id="user-status">Guest mode</span><button class="btn primary" onclick="showPage('account')">Sign in</button></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+  <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span class="icon"><svg><use href="#home"/></svg></span>Home</button>
+  <button class="nav-btn" data-page="videos" onclick="showPage('videos')"><span class="icon"><svg><use href="#video"/></svg></span>Videos</button>
+  <button class="nav-btn" data-page="news" onclick="showPage('news')"><span class="icon"><svg><use href="#news"/></svg></span>News</button>
+  <button class="nav-btn" data-page="sports" onclick="showPage('sports')"><span class="icon"><svg><use href="#sports"/></svg></span>Sports</button>
+  <button class="nav-btn" data-page="live" onclick="showPage('live')"><span class="icon"><svg><use href="#live"/></svg></span>Live channels</button>
+  <button class="nav-btn" data-page="messages" onclick="showPage('messages')"><span class="icon"><svg><use href="#chat"/></svg></span>Messages</button>
+  <button class="nav-btn" data-page="translate" onclick="showPage('translate')"><span class="icon"><svg><use href="#globe"/></svg></span>Translate</button>
+  <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span class="icon"><svg><use href="#user"/></svg></span>Profile</button>
+  <button class="nav-btn" data-page="settings" onclick="showPage('settings')"><span class="icon"><svg><use href="#settings"/></svg></span>Settings</button>
+</aside>
+
+<main>
+<section id="page-home" class="page active">
+  <div class="card hero"><div>
+    <div class="eyebrow">ONE WORLD. MANY VOICES.</div>
+    <h1>Welcome to<br>ORVEX.</h1>
+    <p>Connect, discover, share ideas and explore a world of creativity.</p>
+    <button class="btn primary" onclick="document.getElementById('composer').scrollIntoView({behavior:'smooth'})">Create a post ↗</button>
+  </div></div>
+
+  <div class="card">
+    <div class="eyebrow">YOUR COMMUNITY</div><h2 class="title">Stories</h2>
+    <div class="story-list" id="stories">
+      <button class="story story-add" onclick="document.getElementById('story-file').click()">
+        <div class="story-ring"><div class="story-inner">＋</div></div>Your story
+      </button>
+      <div class="story"><div class="story-ring"><div class="story-inner">🌐</div></div>World</div>
+      <div class="story"><div class="story-ring"><div class="story-inner">🎬</div></div>Creators</div>
+      <div class="story"><div class="story-ring"><div class="story-inner">🎵</div></div>Music</div>
+      <div class="story"><div class="story-ring"><div class="story-inner">⚽</div></div>Sports</div>
     </div>
-  </header>
-
-  <div class="layout">
-    <aside class="sidebar">
-      <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span class="nav-icon">⌂</span> Home</button>
-      <button class="nav-btn" data-page="videos" onclick="showPage('videos')"><span class="nav-icon">▷</span> Videos</button>
-      <button class="nav-btn" data-page="news" onclick="showPage('news')"><span class="nav-icon">▤</span> News</button>
-      <button class="nav-btn" data-page="sports" onclick="showPage('sports')"><span class="nav-icon">⚽</span> Sports</button>
-      <button class="nav-btn" data-page="live" onclick="showPage('live')"><span class="nav-icon">◉</span> Live channels</button>
-      <button class="nav-btn" data-page="messages" onclick="showPage('messages')"><span class="nav-icon">✉</span> Messages</button>
-      <button class="nav-btn" data-page="translate" onclick="showPage('translate')"><span class="nav-icon">文</span> Translator</button>
-      <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span class="nav-icon">◎</span> Profile</button>
-      <button class="nav-btn" data-page="account" onclick="showPage('account')"><span class="nav-icon">⚙</span> Account</button>
-    </aside>
-
-    <main>
-      <section id="page-home" class="page active">
-        <div class="card hero">
-          <div>
-            <div class="eyebrow">ONE WORLD. MANY VOICES.</div>
-            <h1>Welcome to<br>ORVEX.</h1>
-            <p>A place to connect, share ideas, discover videos and explore the world — all in a clean black-and-white experience.</p>
-            <button class="btn primary" onclick="document.getElementById('composer').scrollIntoView({behavior:'smooth'})">Create a post ↗</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="eyebrow">YOUR COMMUNITY</div>
-          <h2 class="section-title">Discover people</h2>
-          <div class="stories">
-            <div class="story"><div class="story-ring"><span>＋</span></div>Your story</div>
-            <div class="story"><div class="story-ring"><span>🌐</span></div>World</div>
-            <div class="story"><div class="story-ring"><span>🎬</span></div>Creators</div>
-            <div class="story"><div class="story-ring"><span>🎵</span></div>Music</div>
-            <div class="story"><div class="story-ring"><span>⚽</span></div>Sports</div>
-            <div class="story"><div class="story-ring"><span>💡</span></div>Ideas</div>
-          </div>
-        </div>
-
-        <div class="card composer" id="composer">
-          <div class="post-head">
-            <div class="avatar">O</div>
-            <div><strong>Create something</strong><div class="muted">Share your thoughts with the community</div></div>
-          </div>
-          <textarea id="post-text" placeholder="What's on your mind?"></textarea>
-          <div class="post-actions">
-            <button class="action" onclick="document.getElementById('post-image').click()">＋ Add image</button>
-            <input id="post-image" type="file" accept="image/*" hidden onchange="previewImage(event)">
-            <button class="btn primary" onclick="createPost()">Publish post</button>
-          </div>
-          <div id="image-preview"></div>
-          <p class="muted">Demo posts are stored in this browser only. Public posting needs a database and security rules.</p>
-        </div>
-
-        <h2 class="section-title">Your feed</h2>
-        <div id="feed"></div>
-      </section>
-
-      <section id="page-videos" class="page">
-        <div class="card hero"><div><div class="eyebrow">WATCH & DISCOVER</div><h1>ORVEX<br>Videos.</h1><p>Short videos, creator content and discoveries in one place.</p></div></div>
-        <div class="card">
-          <h2 class="section-title">Video studio</h2>
-          <p class="muted">Select a local video to preview it on this device.</p>
-          <input id="video-file" class="field" type="file" accept="video/*">
-          <div id="video-preview" class="media-placeholder">Your video preview will appear here.</div>
-          <p class="notice">Local preview only. Uploading videos for everyone requires cloud storage, upload permissions and moderation.</p>
-        </div>
-      </section>
-
-      <section id="page-news" class="page">
-        <div class="card hero"><div><div class="eyebrow">THE WORLD, CONNECTED</div><h1>World<br>News.</h1><p>Discover trusted reporting from publishers around the world.</p></div></div>
-        <div class="card"><h2 class="section-title">News desk</h2><p>Connect a trusted news API to display live headlines here.</p><div class="notice">Live news is not included in this standalone file. Add an API endpoint and keep secret API keys on a secure server, not in public HTML.</div></div>
-      </section>
-
-      <section id="page-sports" class="page">
-        <div class="card hero"><div><div class="eyebrow">GAME ON</div><h1>ORVEX<br>Sports.</h1><p>Scores, fixtures, teams and sporting stories.</p></div></div>
-        <div class="grid-cards">
-          <div class="feature-card"><div class="big">⚽</div><h3>Football</h3><p>Fixtures, results and league tables require a sports data provider.</p></div>
-          <div class="feature-card"><div class="big">🏏</div><h3>Cricket</h3><p>Live scores require an authorized sports API.</p></div>
-          <div class="feature-card"><div class="big">🏀</div><h3>Basketball</h3><p>Follow teams and competitions once a data source is connected.</p></div>
-          <div class="feature-card"><div class="big">🏆</div><h3>Highlights</h3><p>Use authorized video sources for match highlights.</p></div>
-        </div>
-      </section>
-
-      <section id="page-live" class="page">
-        <div class="card hero"><div><div class="eyebrow">WATCH RESPONSIBLY</div><h1>Live<br>Channels.</h1><p>Build your channel directory using official broadcaster streams.</p></div></div>
-        <div class="card"><h2 class="section-title">Channel player</h2>
-          <label for="stream-url" class="muted">Authorized stream URL</label>
-          <input id="stream-url" class="field" type="url" placeholder="https://example.com/your-authorized-stream.m3u8">
-          <div class="post-actions"><button class="btn primary" onclick="playStream()">Play stream</button><button class="btn" onclick="stopStream()">Stop</button></div>
-          <video id="stream-player" controls playsinline style="width:100%;margin-top:16px;background:#000;border-radius:12px;max-height:420px"></video>
-          <p class="notice">The browser can play only compatible streams. HLS streams may need a licensed player library. Use only streams you are authorized to broadcast.</p>
-          <p id="stream-status" class="muted"></p>
-        </div>
-      </section>
-
-      <section id="page-messages" class="page">
-        <div class="card hero"><div><div class="eyebrow">STAY CONNECTED</div><h1>Messages.</h1><p>A starting point for private conversations and global communication.</p></div></div>
-        <div class="card"><h2 class="section-title">Message centre</h2><p>Real-time private messaging needs Firebase Authentication, a Firestore data model, strict per-user security rules and abuse reporting.</p><div class="notice">This demo does not send messages to other users. Do not use a public message collection without access controls.</div></div>
-      </section>
-
-      <section id="page-translate" class="page">
-        <div class="card hero"><div><div class="eyebrow">LANGUAGE BRINGS US TOGETHER</div><h1>Translate.</h1><p>Prepare text for communication across languages.</p></div></div>
-        <div class="card">
-          <label class="muted" for="source-text">Text to translate</label>
-          <textarea id="source-text" class="field" rows="5" placeholder="Write your text here..."></textarea>
-          <label class="muted" for="target-language">Target language</label>
-          <select id="target-language" class="field">
-            <option value="ur">Urdu</option><option value="en">English</option>
-            <option value="ar">Arabic</option><option value="es">Spanish</option>
-            <option value="fr">French</option><option value="hi">Hindi</option>
-            <option value="zh">Chinese</option><option value="tr">Turkish</option>
-          </select>
-          <button class="btn primary" onclick="translateText()">Translate text</button>
-          <div id="translation-result" class="media-placeholder">Your translation will appear here.</div>
-          <p class="muted">Translation requires a configured translation service. This demo opens a translation website; it does not claim to translate locally.</p>
-        </div>
-      </section>
-
-      <section id="page-profile" class="page">
-        <div class="card hero"><div><div class="eyebrow">YOUR DIGITAL SPACE</div><h1>Your<br>Profile.</h1><p>Manage your ORVEX identity.</p></div></div>
-        <div class="card">
-          <div class="post-head"><div class="avatar" id="profile-avatar">O</div><div><h2 id="profile-name">ORVEX Member</h2><p id="profile-email" class="muted">Guest account</p></div></div>
-          <label class="muted" for="display-name">Display name</label>
-          <input id="display-name" class="field" maxlength="50" placeholder="Your display name">
-          <label class="muted" for="bio">Bio</label>
-          <textarea id="bio" class="field" maxlength="160" rows="3" placeholder="Tell people about yourself"></textarea>
-          <button class="btn primary" onclick="saveProfile()">Save profile</button>
-          <p id="profile-status" class="muted"></p>
-        </div>
-      </section>
-
-      <section id="page-account" class="page">
-        <div class="auth-wrap">
-          <div class="card">
-            <div class="eyebrow">WELCOME TO ORVEX</div>
-            <h1>Account</h1>
-            <p class="muted">Sign in or create your account using Firebase Authentication.</p>
-            <label class="muted" for="auth-email">Email address</label>
-            <input id="auth-email" class="field" type="email" autocomplete="email" placeholder="you@example.com">
-            <label class="muted" for="auth-password">Password</label>
-            <input id="auth-password" class="field" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters">
-            <div class="post-actions">
-              <button class="btn primary" onclick="signIn()">Sign in</button>
-              <button class="btn" onclick="signUp()">Create account</button>
-            </div>
-            <button class="btn" style="width:100%;margin-top:12px" onclick="signInGoogle()">Continue with Google</button>
-            <button class="btn" style="width:100%;margin-top:12px" onclick="signOutUser()">Sign out</button>
-            <p id="auth-status" class="muted" role="status" aria-live="polite"></p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <aside class="rightbar">
-      <div class="card">
-        <h3 class="right-title">ORVEX TRENDING</h3>
-        <div class="trend"><strong>#Technology</strong><span class="muted">Ideas shaping tomorrow</span></div>
-        <div class="trend"><strong>#Creators</strong><span class="muted">Share your creativity</span></div>
-        <div class="trend"><strong>#WorldSports</strong><span class="muted">Follow your favourite sports</span></div>
-        <div class="trend"><strong>#LearnTogether</strong><span class="muted">Discover new skills</span></div>
-      </div>
-      <div class="card">
-        <h3 class="right-title">ABOUT ORVEX</h3>
-        <p class="muted" style="line-height:1.8">A social platform concept focused on connection, creativity and global communication.</p>
-        <div class="eyebrow">MADE IN MIAN ABDULLAH</div>
-      </div>
-    </aside>
+    <input id="story-file" type="file" accept="image/*,video/*" hidden>
+    <div id="story-preview" class="preview"></div>
+    <p class="muted">Stories ka preview yahan dikhega. Public stories ke liye cloud storage chahiye.</p>
   </div>
 
-  <nav class="mobile-nav" aria-label="Mobile navigation">
-    <button onclick="showPage('home')"><span>⌂</span>Home</button>
-    <button onclick="showPage('videos')"><span>▷</span>Videos</button>
-    <button onclick="showPage('news')"><span>▤</span>News</button>
-    <button onclick="showPage('messages')"><span>✉</span>Messages</button>
-    <button onclick="showPage('profile')"><span>◎</span>Profile</button>
-  </nav>
+  <div class="card" id="composer">
+    <div class="row"><div class="avatar">O</div><div><strong>Create a post</strong><div class="muted">Share your thoughts</div></div></div>
+    <textarea id="post-text" maxlength="3000" placeholder="What's on your mind?"></textarea>
+    <div class="actions">
+      <button class="action" onclick="document.getElementById('image-file').click()">＋ Add image</button>
+      <input id="image-file" type="file" accept="image/*" hidden>
+      <button class="btn primary" onclick="createPost()">Publish post</button>
+    </div>
+    <div id="image-preview" class="preview"></div>
+    <p class="muted">This starter stores posts in browser memory. Shared posts need Firestore integration.</p>
+  </div>
+  <h2 class="title">Your feed</h2><div id="feed"></div>
+</section>
 
-  <footer class="footer">
-    <strong>ORVEX</strong> — MADE IN MIAN ABDULLAH<br>
-    Connect. Discover. Create.<br>
-    <span>ORVEX starter interface. Some features require backend services.</span>
-  </footer>
+<section id="page-videos" class="page">
+  <div class="card hero"><div><div class="eyebrow">WATCH & DISCOVER</div><h1>ORVEX<br>Videos.</h1><p>Choose a video, preview it and upload it to your configured Firebase Storage.</p></div></div>
+  <div class="card">
+    <h2 class="title">Video studio</h2>
+    <input id="video-file" class="field" type="file" accept="video/*">
+    <div id="video-preview" class="preview notice">Select a video to preview it here.</div>
+    <button class="btn primary" onclick="uploadVideo()">Upload video</button>
+    <p id="upload-status" class="status" role="status"></p>
+    <p class="notice">Firebase Storage must be enabled and secure rules configured. Uploading does not automatically publish a video into the shared feed.</p>
+  </div>
+</section>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import {
-      getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
-      signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut
-    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-    import {
-      getFirestore, doc, getDoc, setDoc, serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+<section id="page-news" class="page">
+  <div class="card hero"><div><div class="eyebrow">THE WORLD, CONNECTED</div><h1>World<br>News.</h1><p>Explore trusted news sources.</p></div></div>
+  <div class="card"><h2 class="title">News desk</h2><p>Live news requires a news API and a secure backend.</p><div class="notice">Connect a licensed provider to activate live headlines.</div></div>
+</section>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDVbbGc1hTR06M4JJdQxBOm_8cxMsLOrZo",
-      authDomain: "orvex-a1a07.firebaseapp.com",
-      projectId: "orvex-a1a07",
-      storageBucket: "orvex-a1a07.firebasestorage.app",
-      messagingSenderId: "165210370215",
-      appId: "1:165210370215:web:ebfbd56df53c36b1a36b82",
-      measurementId: "G-VRQE59184T"
-    };
+<section id="page-sports" class="page">
+  <div class="card hero"><div><div class="eyebrow">GAME ON</div><h1>ORVEX<br>Sports.</h1><p>Sports, fixtures, scores and highlights.</p></div></div>
+  <div class="feature-grid">
+    <div class="feature"><div class="emoji">⚽</div><h3>Football</h3><p>Live scores require a sports data API.</p></div>
+    <div class="feature"><div class="emoji">🏏</div><h3>Cricket</h3><p>Connect an authorized cricket data source.</p></div>
+    <div class="feature"><div class="emoji">🏀</div><h3>Basketball</h3><p>Follow competitions and teams.</p></div>
+    <div class="feature"><div class="emoji">🏆</div><h3>Highlights</h3><p>Use authorized video sources.</p></div>
+  </div>
+</section>
 
-    let auth = null;
-    let db = null;
-    let currentUser = null;
+<section id="page-live" class="page">
+  <div class="card hero"><div><div class="eyebrow">LIVE ENTERTAINMENT</div><h1>Live<br>Channels.</h1><p>Play streams you own or are authorized to use.</p></div></div>
+  <div class="card"><h2 class="title">Stream player</h2>
+    <input id="stream-url" class="field" type="url" placeholder="https://your-authorized-stream-url">
+    <div class="actions"><button class="btn primary" onclick="playStream()">Play stream</button><button class="btn" onclick="stopStream()">Stop</button></div>
+    <video id="stream-player" controls playsinline style="width:100%;max-height:400px;margin-top:15px;background:#000;border-radius:12px"></video>
+    <p id="stream-status" class="status"></p>
+  </div>
+</section>
 
-    const $ = (id) => document.getElementById(id);
-    const status = (id, message) => { $(id).textContent = message; };
+<section id="page-messages" class="page">
+  <div class="card hero"><div><div class="eyebrow">STAY CONNECTED</div><h1>Messages.</h1><p>A foundation for global conversations.</p></div></div>
+  <div class="card"><h2 class="title">Message centre</h2><p>Real-time private messages need a database, security rules and moderation.</p><div class="notice">Private messaging is not enabled in this starter version.</div></div>
+</section>
 
+<section id="page-translate" class="page">
+  <div class="card hero"><div><div class="eyebrow">LANGUAGE CONNECTS US</div><h1>Translate.</h1><p>Open a translation tool for different languages.</p></div></div>
+  <div class="card">
+    <label for="source-text">Text to translate</label>
+    <textarea id="source-text" class="field" rows="5" placeholder="Enter your text..."></textarea>
+    <label for="target-language">Target language</label>
+    <select id="target-language" class="field">
+      <option value="ur">Urdu</option><option value="en">English</option>
+      <option value="ar">Arabic</option><option value="es">Spanish</option>
+      <option value="fr">French</option><option value="hi">Hindi</option>
+      <option value="zh-CN">Chinese</option><option value="tr">Turkish</option>
+    </select>
+    <button class="btn primary" onclick="translateText()">Open translator</button>
+  </div>
+</section>
+
+<section id="page-profile" class="page">
+  <div class="card hero"><div><div class="eyebrow">YOUR DIGITAL SPACE</div><h1>Your Profile.</h1><p>Manage your personal information.</p></div></div>
+  <div class="card"><div class="row"><div class="avatar" id="profile-avatar">O</div><div><h2 id="profile-name">ORVEX Member</h2><p class="muted" id="profile-email">Guest account</p></div></div>
+    <label for="display-name">Display name</label><input id="display-name" class="field" maxlength="50" placeholder="Your name">
+    <label for="bio">Bio</label><textarea id="bio" class="field" maxlength="160" placeholder="Tell people about yourself"></textarea>
+    <button class="btn primary" onclick="saveProfile()">Save profile</button><p id="profile-status" class="status"></p>
+  </div>
+</section>
+
+<section id="page-settings" class="page">
+  <div class="card hero"><div><div class="eyebrow">PERSONALIZE YOUR SPACE</div><h1>Settings.</h1><p>Adjust your ORVEX experience.</p></div></div>
+  <div class="card"><h2 class="title">Appearance</h2>
+    <button class="btn" onclick="setTheme('dark')">Dark mode</button>
+    <button class="btn" onclick="setTheme('light')">Light mode</button>
+  </div>
+  <div class="card"><h2 class="title">Account & privacy</h2>
+    <button class="btn" onclick="showPage('account')">Manage account</button>
+    <button class="btn" onclick="showPage('profile')">Edit profile</button>
+    <p class="notice">Use secure database rules. Never publish passwords or private server keys in this file.</p>
+  </div>
+  <div class="card"><h2 class="title">About ORVEX</h2><p>Version 1.0</p><p class="muted">MADE IN MIAN ABDULLAH</p></div>
+</section>
+
+<section id="page-account" class="page">
+  <div class="card"><div class="eyebrow">WELCOME TO ORVEX</div><h1>Account</h1>
+    <label for="auth-email">Email address</label><input id="auth-email" class="field" type="email" autocomplete="email" placeholder="you@example.com">
+    <label for="auth-password">Password</label><input id="auth-password" class="field" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters">
+    <div class="actions"><button class="btn primary" onclick="signIn()">Sign in</button><button class="btn" onclick="signUp()">Create account</button></div>
+    <button class="btn" style="margin-top:12px" onclick="signInGoogle()">Continue with Google</button>
+    <button class="btn" style="margin-top:12px" onclick="signOutUser()">Sign out</button>
+    <p id="auth-status" class="status" role="status"></p>
+  </div>
+</section>
+</main>
+
+<aside class="rightbar">
+  <div class="right-card"><h3>ORVEX TRENDING</h3>
+    <div class="trend"><strong>#Technology</strong><p class="muted">Ideas shaping tomorrow</p></div>
+    <div class="trend"><strong>#Creators</strong><p class="muted">Share your creativity</p></div>
+    <div class="trend"><strong>#WorldSports</strong><p class="muted">Sports and stories</p></div>
+  </div>
+  <div class="right-card"><h3>ABOUT ORVEX</h3><p class="muted">Connect. Discover. Create.</p><strong>MADE IN MIAN ABDULLAH</strong></div>
+</aside>
+</div>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button onclick="showPage('home')"><svg><use href="#home"/></svg>Home</button>
+  <button onclick="showPage('videos')"><svg><use href="#video"/></svg>Videos</button>
+  <button onclick="showPage('news')"><svg><use href="#news"/></svg>News</button>
+  <button onclick="showPage('messages')"><svg><use href="#chat"/></svg>Messages</button>
+  <button onclick="showPage('settings')"><svg><use href="#settings"/></svg>Settings</button>
+</nav>
+
+<footer class="footer">ORVEX · MADE IN MIAN ABDULLAH<br>Connect. Discover. Create.</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp }
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL }
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDVbbGc1hTR06M4JJdQxBOm_8cxMsLOrZo",
+  authDomain: "orvex-a1a07.firebaseapp.com",
+  projectId: "orvex-a1a07",
+  storageBucket: "orvex-a1a07.firebasestorage.app",
+  messagingSenderId: "165210370215",
+  appId: "1:165210370215:web:ebfbd56df53c36b1a36b82",
+  measurementId: "G-VRQE59184T"
+};
+
+const $ = id => document.getElementById(id);
+const say = (id, text) => { $(id).textContent = text; };
+let auth = null, db = null, storage = null, currentUser = null;
+let selectedVideo = null, selectedImage = null;
+
+try {
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+
+  onAuthStateChanged(auth, async user => {
+    currentUser = user;
+    $("user-status").textContent = user ? user.email : "Guest mode";
+    $("profile-email").textContent = user ? user.email : "Guest account";
+    $("profile-name").textContent = user?.displayName || "ORVEX Member";
+    $("profile-avatar").textContent =
+      (user?.displayName || user?.email || "O").charAt(0).toUpperCase();
+
+    if (!user) return;
     try {
-      const app = initializeApp(firebaseConfig);
-      auth = getAuth(app);
-      db = getFirestore(app);
-
-      onAuthStateChanged(auth, async (user) => {
-        currentUser = user;
-        $("user-status").textContent = user ? user.email : "Guest mode";
-        $("profile-email").textContent = user ? user.email : "Guest account";
-        $("profile-name").textContent = user?.displayName || "ORVEX Member";
-        $("profile-avatar").textContent = (user?.displayName || user?.email || "O").charAt(0).toUpperCase();
-
-        if (user) {
-          try {
-            const snap = await getDoc(doc(db, "users", user.uid));
-            if (snap.exists()) {
-              const data = snap.data();
-              $("display-name").value = data.displayName || user.displayName || "";
-              $("bio").value = data.bio || "";
-              $("profile-name").textContent = data.displayName || user.displayName || "ORVEX Member";
-            } else {
-              $("display-name").value = user.displayName || "";
-            }
-          } catch (error) {
-            console.error(error);
-            status("profile-status", "Profile could not load. Check Firestore rules.");
-          }
-        }
-      });
-    } catch (error) {
-      console.error("Firebase initialization failed:", error);
-      status("auth-status", "Firebase setup failed. Check the configuration and browser console.");
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (snap.exists()) {
+        const data = snap.data();
+        $("display-name").value = data.displayName || user.displayName || "";
+        $("bio").value = data.bio || "";
+        $("profile-name").textContent = data.displayName || user.displayName || "ORVEX Member";
+      } else {
+        $("display-name").value = user.displayName || "";
+      }
+    } catch (e) {
+      say("profile-status", "Profile load nahi hua. Firestore rules check karein.");
     }
+  });
+} catch (e) {
+  console.error("Firebase initialization error:", e);
+  say("auth-status", "Firebase setup check karein aur browser console dekhein.");
+}
 
-    window.signUp = async function () {
-      if (!auth) return status("auth-status", "Firebase is not initialized.");
-      const email = $("auth-email").value.trim();
-      const password = $("auth-password").value;
-      if (!email || password.length < 6) return status("auth-status", "Enter a valid email and password of at least 6 characters.");
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        status("auth-status", "Account created successfully.");
-      } catch (error) {
-        status("auth-status", friendlyError(error));
-      }
-    };
+window.showPage = function(page) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const target = $("page-" + page);
+  if (!target) return;
+  target.classList.add("active");
+  document.querySelectorAll("[data-page]").forEach(b =>
+    b.classList.toggle("active", b.dataset.page === page)
+  );
+  window.scrollTo({top:0,behavior:"smooth"});
+};
 
-    window.signIn = async function () {
-      if (!auth) return status("auth-status", "Firebase is not initialized.");
-      const email = $("auth-email").value.trim();
-      const password = $("auth-password").value;
-      if (!email || !password) return status("auth-status", "Enter your email and password.");
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        status("auth-status", "Signed in successfully.");
-      } catch (error) {
-        status("auth-status", friendlyError(error));
-      }
-    };
+window.setTheme = function(theme) {
+  document.body.classList.toggle("light", theme === "light");
+  try { localStorage.setItem("orvex-theme", theme); } catch {}
+};
+try {
+  if (localStorage.getItem("orvex-theme") === "light") document.body.classList.add("light");
+} catch {}
 
-    window.signInGoogle = async function () {
-      if (!auth) return status("auth-status", "Firebase is not initialized.");
-      try {
-        await signInWithPopup(auth, new GoogleAuthProvider());
-        status("auth-status", "Signed in with Google.");
-      } catch (error) {
-        status("auth-status", friendlyError(error));
-      }
-    };
+function friendlyError(e) {
+  const errors = {
+    "auth/email-already-in-use":"Yeh email pehle se registered hai.",
+    "auth/invalid-email":"Valid email enter karein.",
+    "auth/weak-password":"Password kam az kam 6 characters ka hona chahiye.",
+    "auth/invalid-credential":"Email ya password ghalat hai.",
+    "auth/unauthorized-domain":"Firebase Authentication mein website domain add karein.",
+    "storage/unauthorized":"Storage rules upload ki permission nahi de rahe."
+  };
+  return errors[e?.code] || e?.message || "Error hua. Dobara try karein.";
+}
 
-    window.signOutUser = async function () {
-      if (!auth) return;
-      try {
-        await signOut(auth);
-        status("auth-status", "You are signed out.");
-      } catch (error) {
-        status("auth-status", friendlyError(error));
-      }
-    };
+window.signUp = async function() {
+  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
+  const email=$("auth-email").value.trim(), password=$("auth-password").value;
+  if (!email || password.length<6) return say("auth-status","Valid email aur 6+ character password enter karein.");
+  try {
+    await createUserWithEmailAndPassword(auth,email,password);
+    say("auth-status","Account create ho gaya.");
+  } catch(e) { say("auth-status",friendlyError(e)); }
+};
 
-    window.saveProfile = async function () {
-      if (!currentUser || !db) return status("profile-status", "Please sign in before saving your profile.");
-      const displayName = $("display-name").value.trim().slice(0, 50);
-      const bio = $("bio").value.trim().slice(0, 160);
-      try {
-        await setDoc(doc(db, "users", currentUser.uid), {
-          displayName, bio, updatedAt: serverTimestamp()
-        }, { merge: true });
-        $("profile-name").textContent = displayName || "ORVEX Member";
-        $("profile-avatar").textContent = (displayName || currentUser.email || "O").charAt(0).toUpperCase();
-        status("profile-status", "Profile saved.");
-      } catch (error) {
-        status("profile-status", friendlyError(error));
-      }
-    };
+window.signIn = async function() {
+  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
+  const email=$("auth-email").value.trim(), password=$("auth-password").value;
+  if (!email || !password) return say("auth-status","Email aur password enter karein.");
+  try {
+    await signInWithEmailAndPassword(auth,email,password);
+    say("auth-status","Login successful.");
+  } catch(e) { say("auth-status",friendlyError(e)); }
+};
 
-    function friendlyError(error) {
-      const messages = {
-        "auth/email-already-in-use": "This email is already registered.",
-        "auth/invalid-email": "Please enter a valid email address.",
-        "auth/weak-password": "Choose a stronger password with at least 6 characters.",
-        "auth/invalid-credential": "Email or password is incorrect.",
-        "auth/popup-blocked": "Your browser blocked the Google sign-in popup.",
-        "auth/unauthorized-domain": "Add this website domain in Firebase Authentication settings."
-      };
-      return messages[error?.code] || error?.message || "Something went wrong. Please try again.";
-    }
+window.signInGoogle = async function() {
+  if (!auth) return say("auth-status","Firebase initialize nahi hua.");
+  try {
+    await signInWithPopup(auth,new GoogleAuthProvider());
+    say("auth-status","Google login successful.");
+  } catch(e) { say("auth-status",friendlyError(e)); }
+};
 
-    const initialPosts = [
-      { name: "ORVEX Team", text: "Welcome to ORVEX — a place to connect, discover and create. 🌐", time: "Welcome post" },
-      { name: "Creator Community", text: "Share your ideas, learn new things and build meaningful connections.", time: "Community post" }
-    ];
+window.signOutUser = async function() {
+  if (!auth) return;
+  try {
+    await signOut(auth);
+    say("auth-status","Sign out successful.");
+  } catch(e) { say("auth-status",friendlyError(e)); }
+};
 
-    const posts = [...initialPosts];
+window.saveProfile = async function() {
+  if (!currentUser || !db) return say("profile-status","Pehle login karein.");
+  const displayName=$("display-name").value.trim().slice(0,50);
+  const bio=$("bio").value.trim().slice(0,160);
+  try {
+    await setDoc(doc(db,"users",currentUser.uid),{
+      displayName,bio,updatedAt:serverTimestamp()
+    },{merge:true});
+    $("profile-name").textContent=displayName || "ORVEX Member";
+    $("profile-avatar").textContent=(displayName || currentUser.email || "O").charAt(0).toUpperCase();
+    say("profile-status","Profile save ho gaya.");
+  } catch(e) { say("profile-status",friendlyError(e)); }
+};
 
-    function escapeHTML(value) {
-      return String(value).replace(/[&<>"']/g, char => ({
-        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-      })[char]);
-    }
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
 
-    function renderPosts() {
-      $("feed").replaceChildren();
-      posts.slice().reverse().forEach((post, index) => {
-        const article = document.createElement("article");
-        article.className = "card";
-        article.innerHTML = `
-          <div class="post-head">
-            <div class="avatar">${escapeHTML(post.name.charAt(0).toUpperCase())}</div>
-            <div><strong>${escapeHTML(post.name)}</strong><div class="muted">${escapeHTML(post.time)}</div></div>
-          </div>
-          <p class="post-content">${escapeHTML(post.text)}</p>
-          <div class="post-actions">
-            <button class="action" data-like="${index}">♡ Like <span>0</span></button>
-            <button class="action" data-share="${index}">↗ Share</button>
-          </div>`;
-        $("feed").appendChild(article);
-      });
+const posts = [
+  {name:"ORVEX Team",text:"Welcome to ORVEX — connect, discover and create. 🌐"},
+  {name:"Creator Community",text:"Share your ideas and build meaningful connections."}
+];
 
-      $("feed").querySelectorAll("[data-like]").forEach(button => {
-        button.addEventListener("click", () => {
-          const count = button.querySelector("span");
-          count.textContent = String(Number(count.textContent) + 1);
-          button.style.borderColor = "white";
-        });
-      });
-
-      $("feed").querySelectorAll("[data-share]").forEach(button => {
-        button.addEventListener("click", async () => {
-          const post = posts[posts.length - 1 - Number(button.dataset.share)];
-          const text = `${post.name}: ${post.text}`;
-          try {
-            if (navigator.share) await navigator.share({ title: "ORVEX", text });
-            else if (navigator.clipboard) {
-              await navigator.clipboard.writeText(text);
-              button.textContent = "✓ Copied";
-            } else {
-              window.prompt("Copy this post:", text);
-            }
-          } catch (error) {
-            if (error.name !== "AbortError") console.error(error);
-          }
-        });
-      });
-    }
-
-    window.createPost = function () {
-      const text = $("post-text").value.trim();
-      if (!text) return alert("Please write something first.");
-      const name = currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest Creator";
-      posts.push({ name, text, time: "Just now" });
-      $("post-text").value = "";
-      $("image-preview").replaceChildren();
-      renderPosts();
-    };
-
-    window.previewImage = function (event) {
-      const file = event.target.files?.[0];
-      if (!file) return;
-      if (!file.type.startsWith("image/")) return alert("Please choose an image file.");
-      if (file.size > 5 * 1024 * 1024) return alert("Please choose an image smaller than 5 MB.");
-      const reader = new FileReader();
-      reader.onload = () => {
-        const img = document.createElement("img");
-        img.src = reader.result;
-        img.alt = "Selected image preview";
-        img.style.cssText = "max-width:100%;max-height:320px;margin-top:12px;border-radius:12px";
-        $("image-preview").replaceChildren(img);
-      };
-      reader.readAsDataURL(file);
-    };
-
-    $("video-file").addEventListener("change", (event) => {
-      const file = event.target.files?.[0];
-      if (!file) return;
-      if (!file.type.startsWith("video/")) return alert("Please select a video file.");
-      const oldUrl = $("video-preview").dataset.objectUrl;
-      if (oldUrl) URL.revokeObjectURL(oldUrl);
-      const url = URL.createObjectURL(file);
-      $("video-preview").dataset.objectUrl = url;
-      const video = document.createElement("video");
-      video.src = url;
-      video.controls = true;
-      video.playsInline = true;
-      video.style.cssText = "width:100%;max-height:420px";
-      $("video-preview").replaceChildren(video);
+function renderPosts() {
+  $("feed").replaceChildren();
+  [...posts].reverse().forEach(post => {
+    const article=document.createElement("article");
+    article.className="card";
+    article.innerHTML=`<div class="row"><div class="avatar">${escapeHTML(post.name.charAt(0))}</div><strong>${escapeHTML(post.name)}</strong></div>
+    <p class="post-text">${escapeHTML(post.text)}</p>
+    <div class="actions"><button class="action" data-like>♡ Like <span>0</span></button><button class="action" data-share>↗ Share</button></div>`;
+    article.querySelector("[data-like]").addEventListener("click",e=>{
+      const count=e.currentTarget.querySelector("span");
+      count.textContent=String(Number(count.textContent)+1);
     });
-
-    window.translateText = function () {
-      const text = $("source-text").value.trim();
-      const target = $("target-language").value;
-      if (!text) return alert("Please enter text to translate.");
-      const url = "https://translate.google.com/?sl=auto&tl=" +
-        encodeURIComponent(target) + "&text=" + encodeURIComponent(text) + "&op=translate";
-      window.open(url, "_blank", "noopener,noreferrer");
-    };
-
-    window.playStream = function () {
-      const url = $("stream-url").value.trim();
-      if (!url || !/^https:\/\//i.test(url)) {
-        status("stream-status", "Enter a valid HTTPS stream URL.");
-        return;
+    article.querySelector("[data-share]").addEventListener("click",async()=>{
+      try {
+        if(navigator.share) await navigator.share({title:"ORVEX",text:post.text});
+        else if(navigator.clipboard) {
+          await navigator.clipboard.writeText(post.text);
+          e.currentTarget.textContent="✓ Copied";
+        } else window.prompt("Copy post:",post.text);
+      } catch(error) {
+        if(error.name!=="AbortError") console.error(error);
       }
-      const player = $("stream-player");
-      player.src = url;
-      player.load();
-      player.play().catch(() => {
-        status("stream-status", "Stream loaded. Press Play; the URL must be compatible with your browser.");
-      });
-      status("stream-status", "Trying to open the stream. Some formats need a compatible player.");
-    };
+    });
+    $("feed").appendChild(article);
+  });
+}
 
-    window.stopStream = function () {
-      const player = $("stream-player");
-      player.pause();
-      player.removeAttribute("src");
-      player.load();
-      status("stream-status", "Playback stopped.");
-    };
+window.createPost = function() {
+  const text=$("post-text").value.trim();
+  if(!text) return alert("Pehle post likhein.");
+  posts.push({
+    name:currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest Creator",
+    text
+  });
+  $("post-text").value="";
+  renderPosts();
+};
 
-    window.showPage = function (page) {
-      document.querySelectorAll(".page").forEach(section => section.classList.remove("active"));
-      const target = $("page-" + page);
-      if (!target) return;
-      target.classList.add("active");
-      document.querySelectorAll("[data-page]").forEach(button => {
-        button.classList.toggle("active", button.dataset.page === page);
-      });
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+function previewFile(file,container,type) {
+  if(!file) return;
+  const isImage=type==="image";
+  if(isImage && !file.type.startsWith("image/")) return alert("Image file select karein.");
+  if(!isImage && !file.type.startsWith("video/")) return alert("Video file select karein.");
+  const limit=isImage?5:100;
+  if(file.size>limit*1024*1024) return alert(`File ${limit} MB se chhoti honi chahiye.`);
+  const old=container.dataset.url;
+  if(old) URL.revokeObjectURL(old);
+  const url=URL.createObjectURL(file);
+  container.dataset.url=url;
+  const el=document.createElement(isImage?"img":"video");
+  el.src=url; el.alt=isImage?"Image preview":"";
+  if(!isImage) { el.controls=true; el.playsInline=true; }
+  container.replaceChildren(el);
+}
 
-    renderPosts();
-  </script>
+$("image-file").addEventListener("change",e=>{
+  selectedImage=e.target.files?.[0] || null;
+  previewFile(selectedImage,$("image-preview"),"image");
+});
+
+$("story-file").addEventListener("change",e=>{
+  const file=e.target.files?.[0];
+  if(file) previewFile(file,$("story-preview"),file.type.startsWith("image/")?"image":"video");
+});
+
+$("video-file").addEventListener("change",e=>{
+  selectedVideo=e.target.files?.[0] || null;
+  if(selectedVideo) {
+    previewFile(selectedVideo,$("video-preview"),"video");
+    say("upload-status","Video preview ready. Upload ke liye login aur Storage setup zaroori hai.");
+  } else {
+    $("video-preview").textContent="Select a video to preview it here.";
+    say("upload-status","");
+  }
+});
+
+window.uploadVideo = async function() {
+  if(!currentUser) return say("upload-status","Video upload ke liye pehle login karein.");
+  if(!selectedVideo) return say("upload-status","Pehle video select karein.");
+  if(!storage) return say("upload-status","Firebase Storage initialize nahi hua.");
+  if(!selectedVideo.type.startsWith("video/")) return say("upload-status","Valid video file select karein.");
+  if(selectedVideo.size>100*1024*1024) return say("upload-status","Video 100 MB se chhoti honi chahiye.");
+
+  const name=selectedVideo.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+  const fileRef=ref(storage,`videos/${currentUser.uid}/${Date.now()}_${name}`);
+  const task=uploadBytesResumable(fileRef,selectedVideo,{contentType:selectedVideo.type});
+
+  task.on("state_changed",
+    snapshot=>{
+      const percent=Math.round(snapshot.bytesTransferred/snapshot.totalBytes*100);
+      say("upload-status",`Upload progress: ${percent}%`);
+    },
+    error=>say("upload-status",friendlyError(error)),
+    async()=>{
+      try {
+        const url=await getDownloadURL(task.snapshot.ref);
+        say("upload-status","Upload successful. Video URL: "+url);
+      } catch(e) { say("upload-status",friendlyError(e)); }
+    }
+  );
+};
+
+window.translateText = function() {
+  const text=$("source-text").value.trim();
+  if(!text) return alert("Pehle text enter karein.");
+  const lang=$("target-language").value;
+  const url="https://translate.google.com/?sl=auto&tl="+encodeURIComponent(lang)+"&text="+encodeURIComponent(text)+"&op=translate";
+  window.open(url,"_blank","noopener,noreferrer");
+};
+
+window.playStream = function() {
+  const url=$("stream-url").value.trim();
+  if(!/^https:\/\//i.test(url)) return say("stream-status","Valid HTTPS stream URL enter karein.");
+  const player=$("stream-player");
+  player.src=url; player.load();
+  player.play().catch(()=>say("stream-status","Stream load ho gayi. Play dabayein; har format browser mein nahi chalta."));
+};
+
+window.stopStream = function() {
+  const player=$("stream-player");
+  player.pause(); player.removeAttribute("src"); player.load();
+  say("stream-status","Playback stopped.");
+};
+
+renderPosts();
+</script>
 </body>
 </html>
